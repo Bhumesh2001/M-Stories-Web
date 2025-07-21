@@ -44,7 +44,7 @@ const Footer3 = () => {
                         </div>
                       </div>
                     </li>
-                    
+
                     <li className="py-1 sm:py-2">
                       <div className="flex items-center">
                         <div className="flex-shrink-0">
@@ -93,6 +93,7 @@ const Footer3 = () => {
                     </li>
                   </ul>
                 </div>
+
                 <div className="col-span-8 sm:col-span-6 md:col-span-6 md:order-1 lg:order-2 lg:col-span-2">
                   <div className="mb-4">
                     <h5 className="text-2xl font-bold leading-none text-white">
@@ -154,6 +155,7 @@ const Footer3 = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="col-span-8 sm:col-span-6 md:col-span-6 md:order-2 lg:order-3 lg:col-span-2">
                   <div className="mb-4">
                     <h5 className="text-2xl font-bold leading-none text-white">
@@ -215,6 +217,7 @@ const Footer3 = () => {
                     </div>
                   </div>
                 </div>
+
                 <div className="col-span-12 text-center sm:col-span-12 md:col-span-6 md:order-4 lg:order-4 lg:col-span-4 md:text-left">
                   <div className="mb-4">
                     <h5 className="text-2xl font-bold leading-none text-white">

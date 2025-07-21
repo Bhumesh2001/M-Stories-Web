@@ -193,6 +193,7 @@ const newsItems = [
       "We offer pieces that cater to every style and occasion. Discover high-quality fabrics, innovative designs.",
   },
 ]
+
 const topRatedNews = [
   {
     id: 1,
