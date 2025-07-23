@@ -3,7 +3,7 @@ import React from "react"
 const NewsLetter = () => {
   return (
     <React.Fragment>
-      <div className="p-5 text-center bg-white rounded shadow dark:bg-gray-800/70 mt-14 lg:mt-0 hover:shadow-lg">
+      <div className="p-5 text-center bg-white shadow dark:bg-gray-800/70 mt-14 lg:mt-0 hover:shadow-lg rounded-xl">
         <div className="relative inline-block -mt-10 -top-5">
           <div className="bg-[#E40666] dark:bg-gray-700 w-20 h-20 rounded-full flex items-center justify-center text-4xl text-white">
             <i className="ri-mail-line"></i>
