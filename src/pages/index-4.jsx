@@ -10,7 +10,7 @@ import Section6 from "../common/view/index-4/Section6"
 import Section7 from "../common/view/index-4/Section7"
 import Section8 from "../common/view/index-4/Section8"
 import Layout4 from "../common/layout/Layout4"
-import Layout5 from "../common/layout/Layout5"
+// import Layout5 from "../common/layout/Layout5"
 
 const Index4 = () => {
   useEffect(() => {

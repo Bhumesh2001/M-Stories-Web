@@ -185,11 +185,41 @@
 
 // export default Section8
 
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import { Link } from "gatsby";
-import { latestpost } from "../../data";
+// import { latestpost } from "../../data";
+import { callApi } from "../../../services/apiHandler";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Section8 = () => {
+  const [latestPosts, setLatestPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Helper function
+  const isHTML = (str) => /<\/?[a-z][\s\S]*>/i.test(str);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await callApi('/blogs');
+        setLatestPosts(data.data.blogs.slice(0, 4));
+      } catch (err) {
+        console.error("API call failed:", err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    AOS.init({ duration: 600 });
+  }, [latestPosts]);
+
   return (
     <section className="mt-8">
       <div className="container px-4 mx-auto">
@@ -202,7 +232,26 @@ const Section8 = () => {
                   Latest Post
                 </h5>
               </div>
-              {latestpost?.map(item => (
+
+              {loading && (
+                <div className="flex justify-center items-center h-48">
+                  <p className="text-lg text-blue-400 animate-pulse">Loading posts...</p>
+                </div>
+              )}
+
+              {error && (
+                <div className="flex justify-center items-center h-48">
+                  <p className="text-lg text-red-500">Error fetching posts. Please try again later.</p>
+                </div>
+              )}
+
+              {!loading && !error && latestPosts.length === 0 && (
+                <div className="flex justify-center items-center h-48">
+                  <p className="text-lg text-gray-500">No posts available.</p>
+                </div>
+              )}
+
+              {/* {latestPosts?.map(item => (
                 <div
                   className="flex flex-col sm:flex-row gap-4 mb-6"
                   key={item.id}
@@ -233,7 +282,53 @@ const Section8 = () => {
                     </div>
                   </div>
                 </div>
+              ))} */}
+
+              {latestPosts.map(item => (
+                <div
+                  className="flex flex-col sm:flex-row gap-4 mb-6"
+                  key={item._id}
+                >
+                  <Link to={`/single-post?id=${item._id}&model=blog`} className="flex-shrink-0">
+                    <img
+                      className="w-full sm:w-48 md:w-56 lg:w-64 h-40 sm:h-32 md:h-36 lg:h-40 object-cover rounded-2xl"
+                      src={item.images[0]?.url || 'https://placehold.co/600x400/cccccc/ffffff?text=No+Image'}
+                      alt={item.title}
+                    />
+                  </Link>
+                  <div className="flex-1">
+                    <div className="text-sm capitalize text-[#478cff] font-medium">
+                      {item.category?.name}
+                    </div>
+                    <Link to={`/single-post?id=${item._id}&model=blog`}>
+                      <h5 className="mb-1 text-base sm:text-lg leading-snug font-medium text-[#2d3340] hover:text-[#478cff] dark:text-white">
+                        {item.title}
+                      </h5>
+                    </Link>
+                    <p className="mb-2 text-sm text-gray-400 line-clamp-3">
+                      {item.content ? (
+                        isHTML(item.content) ? (
+                          <span dangerouslySetInnerHTML={{ __html: item.content }} />
+                        ) : (
+                          item.content
+                        )
+                      ) : (
+                        ""
+                      )}
+                    </p>
+                    <div className="text-xs text-gray-400 uppercase">
+                      <span className="me-2">{item.author}</span>
+                      <span>7 Months Ago</span>
+                    </div>
+                  </div>
+                </div>
               ))}
+
+              <div className="flex justify-center">
+                <Link to="/blog-tag" className="flex-shrink-0 text-blue-500">
+                  See more...
+                </Link>
+              </div>
             </div>
           </div>
 
@@ -251,18 +346,21 @@ const Section8 = () => {
                     icon: "ri-facebook-circle-fill",
                     color: "bg-[#062DB9]",
                     count: "42.2k",
+                    link: "https://www.facebook.com"
                   },
                   {
                     name: "Twitter",
                     icon: "ri-twitter-x-line",
                     color: "bg-[#20A1EB]",
                     count: "10.1m",
+                    link: "https://www.x.com"
                   },
                   {
                     name: "Twitch",
                     icon: "ri-twitch-line",
                     color: "bg-[#830899]",
                     count: "22.9k",
+                    link: "https://www.twitch.tv"
                   },
                   {
                     name: "Instagram",
@@ -270,10 +368,11 @@ const Section8 = () => {
                     color:
                       "bg-gradient-to-r from-[#863FA6] via-[#E12C61] to-[#F46F46] hover:from-[#683181] hover:via-[#c91d50] hover:to-[#f25626]",
                     count: "50.2k",
+                    link: "https://www.instagram.com"
                   },
-                ].map(({ name, icon, color, count }) => (
+                ].map(({ name, icon, color, count, link }) => (
                   <li key={name}>
-                    <Link to="#" target="_blank">
+                    <a href={link} target="_blank">
                       <div
                         className={`${color} text-white rounded-full py-3 px-6 mb-3 hover:opacity-90 text-base transition-all duration-200`}
                       >
@@ -285,7 +384,7 @@ const Section8 = () => {
                           <div className="text-sm">{count}</div>
                         </div>
                       </div>
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>

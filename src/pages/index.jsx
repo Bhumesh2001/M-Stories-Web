@@ -4,24 +4,21 @@ import Seo from "../components/seo"
 import Section6 from "../common/view/index/Section6"
 import Section8 from "../common/view/index/Section8"
 import Layout from "../common/layout/Layout"
-import Section3_ from '../common/view/index-3/Section3';
-import Section2_ from '../common/view/index-3/Section2';
-import Section4_ from '../common/view/index-3/Section4';
-import Section7_ from "../common/view/index-3/Section7";
-import Section8_ from "../common/view/index-3/Section8"
+import Section3 from '../common/view/index-3/Section3';
+import Section2 from '../common/view/index-3/Section2';
+import Section4 from '../common/view/index-3/Section4';
+import Section7 from "../common/view/index-3/Section7";
+import Section8HotStory from "../common/view/index-3/Section8"
 
 const Index = () => {
 
   useEffect(() => {
     Aos.init({ duration: 1000, disable: "mobile", offset: 100, once: false })
-
     // refresh aos on scroll
     const handleScroll = () => {
       Aos.refresh()
     }
-
     window.addEventListener("scroll", handleScroll)
-
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -29,12 +26,12 @@ const Index = () => {
     <React.Fragment>
       <Layout>
         <Section8 />
-        <Section3_ />
+        <Section3 />
         <Section6 />
-        <Section2_ />
-        <Section4_ />
-        <Section7_ />
-        <Section8_ />
+        <Section2 />
+        <Section4 />
+        <Section7 />
+        <Section8HotStory />
       </Layout>
     </React.Fragment>
   )

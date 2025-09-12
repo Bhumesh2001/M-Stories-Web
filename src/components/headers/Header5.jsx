@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from "react"
 import HelmetStructure from "../HelmetStructure"
 import ThemeCustomizer from "../ThemeCustomizer"
-import Announcement5 from "../announcements/Announcement5"
-import flogo from "../../assets/images/f-logo_.jpeg"
-import logo from "../../assets/images/logo_.png"
+// import Announcement5 from "../announcements/Announcement5"
+import flogo from "../../assets/images/company_logo.png"
+import logo from "../../assets/images/company_logo.png"
 import { Link } from "gatsby"
-import placeHoldImg from "../../assets/images/place-hold.jpg"
+// import placeHoldImg from "../../assets/images/place-hold.jpg"
 
 const Header5 = () => {
-  const [searchOpen, setSearchOpen] = useState(false)
+  // const [searchOpen, setSearchOpen] = useState(false)
   const [menuOpen, setMenuOpen] = React.useState(false)
 
   const [menuStates, setMenuStates] = useState({
@@ -19,23 +19,23 @@ const Header5 = () => {
     homeMenuOpen: false,
   })
 
-  const toggleMenu = menu => {
-    setMenuStates(prevState => ({
-      ...prevState,
-      [menu]: !prevState[menu],
-      // Close other menus
-      homeMenuOpen: menu === "homeMenuOpen" ? !prevState[menu] : false,
+  // const toggleMenu = menu => {
+  //   setMenuStates(prevState => ({
+  //     ...prevState,
+  //     [menu]: !prevState[menu],
+  //     // Close other menus
+  //     homeMenuOpen: menu === "homeMenuOpen" ? !prevState[menu] : false,
 
-      blogMenuOpen: menu === "blogMenuOpen" ? !prevState[menu] : false,
-      postFormatMenuOpen:
-        menu === "postFormatMenuOpen" ? !prevState[menu] : false,
-      pagesMenuOpen: menu === "pagesMenuOpen" ? !prevState[menu] : false,
-      allPagesMenuOpen: menu === "allPagesMenuOpen" ? !prevState[menu] : false,
-    }))
-  }
+  //     blogMenuOpen: menu === "blogMenuOpen" ? !prevState[menu] : false,
+  //     postFormatMenuOpen:
+  //       menu === "postFormatMenuOpen" ? !prevState[menu] : false,
+  //     pagesMenuOpen: menu === "pagesMenuOpen" ? !prevState[menu] : false,
+  //     allPagesMenuOpen: menu === "allPagesMenuOpen" ? !prevState[menu] : false,
+  //   }))
+  // }
+  // console.log(menuStates, '===');
 
   const menuRef = useRef()
-
   useEffect(() => {
     const handleOutsideClick = event => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -63,24 +63,30 @@ const Header5 = () => {
       <ThemeCustomizer />
       {/* <Announcement5 /> */}
 
-      <header className="border-b py-3 dark:border-b-slate-800">
+      <header className="sticky top-0 z-50 bg-white dark:bg-[#111827] border-b py-3 dark:border-b-slate-800">
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between">
-            {/*  Logo */}
+            {/* Logo */}
             <div className="order-2 md:order-1 ms-2 me-2 md:ms-0 md:me-0">
-              <Link to="/">
+              <Link to="/" className="flex items-center gap-2">
+                {/* Light Logo */}
                 <img
                   src={logo}
                   alt="logo"
-                  className="h-auto max-w-full dark:hidden"
-                  style={{ width: "250px" }}
+                  className="max-w-full dark:hidden"
+                  style={{ height: "40px" }}
                 />
+                {/* Dark Logo */}
                 <img
                   src={flogo}
                   alt="logo"
-                  className="hidden h-auto max-w-full rounded-lg dark:block"
-                  style={{ width: "250px" }}
+                  className="hidden max-w-full rounded-lg dark:block"
+                  style={{ height: "40px" }}
                 />
+                {/* Text */}
+                <span className="font-bold text-lg whitespace-nowrap dark:text-white">
+                  MUSLIMSTORIESMEDIA.COM
+                </span>
               </Link>
             </div>
 
@@ -628,7 +634,7 @@ const Header5 = () => {
 
               <div
                 ref={menuRef}
-                className={`${menuOpen ? "block" : "hidden"
+                className={`rounded-lg ${menuOpen ? "block" : "hidden"
                   } w-full md:flex lg:items-center absolute md:relative bg-white left-0 right-0 p-3 z-50 shadow md:shadow-none md:p-0 md:bg-transparent dark:bg-slate-800 dark:border-slate-700`}
                 id="menu"
               >

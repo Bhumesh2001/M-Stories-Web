@@ -1,16 +1,15 @@
 import { Link } from "gatsby"
 import React, { useEffect, useRef, useState } from "react"
-import flogo from "../../assets/images/f-logo_.jpeg"
-import logo from "../../assets/images/logo_.png"
+import flogo from "../../assets/images/company_logo.png"
+import logo from "../../assets/images/company_logo.png"
 import HelmetStructure from "../HelmetStructure"
 import ThemeCustomizer from "../ThemeCustomizer"
-import Announcement from "../announcements/Announcement"
+// import Announcement from "../announcements/Announcement"
 
 const Header = () => {
-  const [searchOpen, setSearchOpen] = useState(false)
+  // const [searchOpen, setSearchOpen] = useState(false)
 
   const [menuOpen, setMenuOpen] = React.useState(false)
-
   const [menuStates, setMenuStates] = useState({
     homeMenuOpen: false,
     blogMenuOpen: false,
@@ -19,22 +18,23 @@ const Header = () => {
     allPagesMenuOpen: false,
   })
 
-  const toggleMenu = menu => {
-    setMenuStates(prevState => ({
-      ...prevState,
-      [menu]: !prevState[menu],
-      // Close other menus
-      homeMenuOpen: menu === "homeMenuOpen" ? !prevState[menu] : false,
-      blogMenuOpen: menu === "blogMenuOpen" ? !prevState[menu] : false,
-      postFormatMenuOpen:
-        menu === "postFormatMenuOpen" ? !prevState[menu] : false,
-      pagesMenuOpen: menu === "pagesMenuOpen" ? !prevState[menu] : false,
-      allPagesMenuOpen: menu === "allPagesMenuOpen" ? !prevState[menu] : false,
-    }))
-  }
+  // const toggleMenu = menu => {
+  //   setMenuStates(prevState => ({
+  //     ...prevState,
+  //     [menu]: !prevState[menu],
+  //     // Close other menus
+  //     homeMenuOpen: menu === "homeMenuOpen" ? !prevState[menu] : false,
+  //     blogMenuOpen: menu === "blogMenuOpen" ? !prevState[menu] : false,
+  //     postFormatMenuOpen:
+  //       menu === "postFormatMenuOpen" ? !prevState[menu] : false,
+  //     pagesMenuOpen: menu === "pagesMenuOpen" ? !prevState[menu] : false,
+  //     allPagesMenuOpen: menu === "allPagesMenuOpen" ? !prevState[menu] : false,
+  //   }))
+  // }
+
+  // console.log(menuStates,'===');
 
   const menuRef = useRef()
-
   useEffect(() => {
     const handleOutsideClick = event => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -63,24 +63,30 @@ const Header = () => {
       {/* <Announcement /> */}
 
       {/* Header */}
-      <header className="mt-0 bg-white shadow md:mt-8 md:shadow-none md:bg-transparent dark:bg-slate-800 dark:md:bg-transparent">
+      <header className="sticky top-0 z-50 mt-0 bg-white shadow md:mt-8 md:shadow-none md:bg-transparent dark:bg-slate-800 dark:md:bg-transparent">
         <div className="container px-4 mx-auto">
           <nav className="flex items-center shadow-none md:shadow rounded-2xl justify-between px-0 md:px-6 py-3 md:py-2 bg-white dark:bg-slate-800">
             {/* Logo */}
             <div className="order-2 md:order-1 ms-2 me-2 md:ms-0 md:me-0">
-              <Link to="/">
+              <Link to="/" className="flex items-center gap-2">
+                {/* Light Logo */}
                 <img
                   src={logo}
                   alt="logo"
-                  className="h-auto max-w-full dark:hidden"
-                  style={{ width: "250px" }}
+                  className="max-w-full dark:hidden"
+                  style={{ height: "40px" }}
                 />
+                {/* Dark Logo */}
                 <img
                   src={flogo}
                   alt="logo"
-                  className="hidden h-auto max-w-full rounded-lg dark:block"
-                  style={{ width: "250px" }}
+                  className="hidden max-w-full rounded-lg dark:block"
+                  style={{ height: "40px" }}
                 />
+                {/* Text */}
+                <span className="font-bold text-lg whitespace-nowrap dark:text-white">
+                  MUSLIMSTORIESMEDIA.COM
+                </span>
               </Link>
             </div>
 
