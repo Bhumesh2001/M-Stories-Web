@@ -380,7 +380,6 @@ const SinglePost = () => {
 
   const isHTML = (str) => /<\/?[a-z][\s\S]*>/i.test(str);
 
-
   useEffect(() => {
     if (!id || !model) return;
 

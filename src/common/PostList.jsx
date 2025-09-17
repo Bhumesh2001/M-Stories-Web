@@ -168,7 +168,7 @@ const PostList = () => {
 
           {/* Text content */}
           <Link
-            to={`/single-post?id=${cat._id}&model=category`}
+            to={`/blog-tag?id=${cat._id}&model=category`}
             className="relative z-10 flex justify-between items-center p-4 text-white font-semibold"
           >
             <span>{cat.name}</span>

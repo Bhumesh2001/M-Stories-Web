@@ -120,7 +120,7 @@ const Section6 = ({ categoryName = "Technology" }) => {
                     ></div>
 
                     <Link
-                      to={`/single-post?id=${category._id}&model=category`}
+                      to={`/blog-tag?id=${category._id}&model=category`}
                       className="py-2.5 px-5 text-sm font-medium bg-white rounded-full border hover:bg-gray-100 hover:text-[#062db9] transition"
                     >
                       See More Info

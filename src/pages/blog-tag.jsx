@@ -220,6 +220,11 @@ const BlogTag = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
+  // Extract query params
+  const searchParams = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
+  const id = searchParams.get("id");
+  // const model = searchParams.get("model"); // blog, news, story, category
+
   useEffect(() => {
     Aos.init({ duration: 1000, disable: "mobile", offset: 100, once: false })
     const handleScroll = () => Aos.refresh();
@@ -227,25 +232,31 @@ const BlogTag = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Fetch blogs with pagination
-  const fetchBlogs = async (pageNumber = 1) => {
-    setLoading(true);
-    try {
-      const data = await callApi(`/blogs?page=${pageNumber}&limit=10`);
-      setAllBlogs(data.data.blogs || []);
-      setBlogs(data.data.blogs || []);
-      setTotalPages(data.data.pagination.totalPages);
-      setPage(data.data.pagination.page);
-    } catch (err) {
-      console.error("API call failed:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    // Fetch blogs with pagination
+    const fetchBlogs = async (pageNumber = 1) => {
+      setLoading(true);
+      try {
+        let url;
+
+        if (id) {
+          url = `/blogs/category/${id}?page=${pageNumber}&limit=10`;
+        } else {
+          url = `/blogs?page=${pageNumber}&limit=10`;
+        }
+        const data = await callApi(url);
+        setAllBlogs(data.data.blogs || []);
+        setBlogs(data.data.blogs || []);
+        setTotalPages(data.data.pagination.totalPages);
+        setPage(data.data.pagination.page);
+      } catch (err) {
+        console.error("API call failed:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchBlogs(page);
-  }, [page]);
+  }, [page, id]);
 
   // Handle search logic
   const handleSearch = () => {
