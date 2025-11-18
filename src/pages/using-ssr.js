@@ -18,7 +18,7 @@ const UsingSSR = ({ serverData }) => {
       <img
         style={{ width: "320px", borderRadius: "var(--border-radius)" }}
         alt="A random dog"
-        src={serverData.message}
+        src={serverData?.message || "No message available"}
       />
       <p>
         To learn more, head over to our{" "}
