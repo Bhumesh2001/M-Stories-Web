@@ -21,14 +21,12 @@ const About = () => {
           <div className="text-center">
             <div className="mb-4">
               <h3 className="text-xl sm:text-2xl font-medium dark:text-white dark:hover:text-[#ff3750]">
-                Luxury homes in the heart of britain
+                Focus on Inspiration and Leadership (Elevated Tone)
               </h3>
             </div>
             <div className="text-center mx-auto my-0 w-full max-w-3xl">
               <p className="text-sm text-gray-400 leading-6 mb-4 dark:text-gray-300">
-                I am text block. Click edit button to change this text. Lorem
-                ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
-                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+                Muslim Stories Media shares inspiring stories of Muslim success, highlighting startups and featuring conversations with influential figures. We aim to amplify the voices of Muslim innovators and leaders.
               </p>
             </div>
             <img
@@ -44,10 +42,10 @@ const About = () => {
                   className="block p-5 xl:p-10 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                 >
                   <h5 className="mb-2 text-lg font-bold uppercase tracking-tight text-gray-900 dark:text-white">
-                    EXCLUSIVE WORLDWIDE
+                    Focus on Innovation and Startups
                   </h5>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Passage of Lorem Ipsum, you need to be amet embarrassing.
+                    Muslim Stories Media shares inspiring stories of Muslim success
                   </p>
                 </Link>
               </div>
@@ -57,10 +55,10 @@ const About = () => {
                   className="block p-5 xl:p-10 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                 >
                   <h5 className="mb-2 text-lg font-bold uppercase tracking-tight text-gray-900 dark:text-white">
-                    FREE WORLDWIDE SHIPPING
+                    Highlighting Success. Inspiring Innovation.
                   </h5>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Passage of Lorem Ipsum, you need to be amet embarrassing.
+                    Muslim Stories Media shares inspiring stories of Muslim success
                   </p>
                 </Link>
               </div>
@@ -70,23 +68,22 @@ const About = () => {
                   className="block p-5 xl:p-10 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700"
                 >
                   <h5 className="mb-2 text-lg font-bold uppercase tracking-tight text-gray-900 dark:text-white">
-                    MONEY BACK GUARANTEE
+                    The Platform for Muslim Trailblazers.
                   </h5>
                   <p className="font-normal text-gray-700 dark:text-gray-400">
-                    Passage of Lorem Ipsum, you need to be amet embarrassing.
+                    Muslim Stories Media shares inspiring stories of Muslim success
                   </p>
                 </Link>
               </div>
             </div>
 
             <h3 className="text-xl md:text-2xl font-medium mt-8 md:mt-28 dark:text-white dark:hover:text-[#ff3750]">
-              Curabitur nec lacus semper, sagittis velit sit amet, placerat.
+              The Stories Behind Muslim Success: Leadership, Startups, and Global Impact.
             </h3>
           </div>
           <div className="text-center mx-auto my-0 w-full max-w-3xl">
             <p className="text-gray-400 leading-6 mb-4 dark:text-gray-300">
-              DiamDuis eget accumsan sem. Nulla imperdiet turpis non tellus
-              molestie interdum lacus sempar.
+              Muslim Stories Media shares inspiring stories of Muslim success, highlighting startups and featuring conversations with influential figures. We aim to amplify the voices of Muslim innovators and leaders.
             </p>
           </div>
 
@@ -96,10 +93,10 @@ const About = () => {
                 <i className="ri-drag-move-fill text-4xl leading-[64px]"></i>
               </div>
               <h5 className="mb-2 text-lg font-bold uppercase tracking-tight text-gray-900 dark:text-white">
-                EXCLUSIVE WORLDWIDE
+                Success. Amplified.
               </h5>
               <p className="font-normal text-gray-700 dark:text-gray-400">
-                Passage of Lorem Ipsum, you need to be amet embarrassing.
+                highlighting startups and featuring conversations with influential figures.
               </p>
             </div>
             <div className="text-center mx-auto">
@@ -107,10 +104,10 @@ const About = () => {
                 <i className="ri-drag-move-fill text-4xl leading-[64px]"></i>
               </div>
               <h5 className="mb-2 text-lg font-bold uppercase tracking-tight text-gray-900 dark:text-white">
-                EXCLUSIVE WORLDWIDE
+                Inspiring Stories. Muslim Voices.
               </h5>
               <p className="font-normal text-gray-700 dark:text-gray-400">
-                Passage of Lorem Ipsum, you need to be amet embarrassing.
+                highlighting startups and featuring conversations with influential figures.
               </p>
             </div>
             <div className="text-center mx-auto">
@@ -118,10 +115,10 @@ const About = () => {
                 <i className="ri-drag-move-fill text-4xl leading-[64px]"></i>
               </div>
               <h5 className="mb-2 text-lg font-bold uppercase tracking-tight text-gray-900 dark:text-white">
-                EXCLUSIVE WORLDWIDE
+                The Voice of Muslim Innovation.
               </h5>
               <p className="font-normal text-gray-700 dark:text-gray-400">
-                Passage of Lorem Ipsum, you need to be amet embarrassing.
+                highlighting startups and featuring conversations with influential figures.
               </p>
             </div>
           </div>

@@ -5,21 +5,21 @@ const Social = () => {
   return (
     <React.Fragment>
       <div className="grid grid-cols-2 gap-2 mb-8 mt-8">
-        <a rel="noopener noreferrer" href="https://www.facebook.com" target="_blank">
+        <a rel="noopener noreferrer" href="https://www.facebook.com/muslimstoriesmedia" target="_blank">
           <div className="bg-[#3b579d] hover:bg-[#314881] text-white text-center rounded-lg py-2 px-0">
             <i className="ri-facebook-fill"></i>{" "}
             <span className="">facebook</span>
           </div>
         </a>
 
-        <a rel="noopener noreferrer" href="https://www.x.com" target="_blank">
+        <a rel="noopener noreferrer" href="https://x.com/muslimstoriesm" target="_blank">
           <div className="bg-[#2caae1] hover:bg-[#1d95c9] text-white text-center rounded-lg py-2 px-0">
             <i className="ri-twitter-x-fill"></i>{" "}
             <span className="">Twitter</span>
           </div>
         </a>
 
-        <a rel="noopener noreferrer" href="https://www.linkedin.com" target="_blank">
+        <a rel="noopener noreferrer" href="https://www.linkedin.com/company/muslimstoriesmedia" target="_blank">
           <div className="bg-[#ee4838] hover:bg-[#eb2614] text-white text-center rounded-lg py-2 px-0">
             <i className="ri-linkedin-fill"></i>{" "}
             <span className="">Linkedin</span>
@@ -32,7 +32,7 @@ const Social = () => {
           </div>
         </a>
 
-        <a rel="noopener noreferrer" href="https://www.youtube.com" target="_blank">
+        <a rel="noopener noreferrer" href="https://www.youtube.com/@muslimstoriesmedia" target="_blank">
           <div className="bg-[#e6291b] hover:bg-[#b81f14] text-white text-center rounded-lg py-2 px-0">
             <i className="ri-youtube-fill"></i>{" "}
             <span className="">Youtube</span>
