@@ -74,7 +74,7 @@ const Header = () => {
                     MUSLIMSTORIESMEDIA.COM
                   </span>
                   <span className="text-xs text-gray-600 dark:text-gray-300 whitespace-nowrap">
-                    Inspiring Hearts, Telling Stories
+                    Impowering Hearts , Inspiring Souls
                   </span>
                 </div>
               </Link>
