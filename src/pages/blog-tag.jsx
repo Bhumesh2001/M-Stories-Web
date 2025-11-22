@@ -6,6 +6,7 @@ import Layout5 from "../common/layout/Layout5"
 import Social from "../common/Social"
 import Seo from "../components/seo"
 import { callApi } from "../services/apiHandler"
+import { BlogListSkeleton } from './../common/Loader';
 
 const BlogTag = () => {
   const [blogs, setBlogs] = useState([]);
@@ -88,9 +89,14 @@ const BlogTag = () => {
           {/* Blog List */}
           <div className="col-span-1 md:col-span-2">
             <div className="grid">
-              {loading && <p className="text-center text-blue-400">Loading blogs...</p>}
-              {!loading && blogs.length === 0 && <p className="text-center text-gray-500">No blogs found.</p>}
-              {blogs.map((post) => (
+
+              {loading && <BlogListSkeleton />}
+
+              {!loading && blogs.length === 0 && (
+                <p className="text-center text-gray-500">No blogs found.</p>
+              )}
+
+              {!loading && blogs.map((post) => (
                 <div className="lg:mb-8" key={post._id}>
                   <div className="block lg:flex gap-4">
                     <div className="lg:w-1/2">

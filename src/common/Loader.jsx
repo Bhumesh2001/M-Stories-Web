@@ -334,3 +334,38 @@ export function PopularChoiceSkeleton() {
         </div>
     );
 };
+
+export function BlogListSkeleton() {
+    return (
+        <div className="space-y-10">
+            {Array.from({ length: 4 }).map((_, i) => (
+                <ContentLoader
+                    key={i}
+                    speed={2}
+                    width="100%"
+                    height={220}
+                    backgroundColor="#2e2e2e"
+                    foregroundColor="#3d3d3d"
+                    className="rounded-lg"
+                >
+                    {/* Left Thumbnail */}
+                    <rect x="0" y="0" rx="10" ry="10" width="45%" height="180" />
+
+                    {/* Title */}
+                    <rect x="48%" y="0" rx="4" ry="4" width="48%" height="18" />
+                    <rect x="48%" y="28" rx="4" ry="4" width="35%" height="14" />
+
+                    {/* Meta */}
+                    <rect x="48%" y="55" rx="3" ry="3" width="20%" height="10" />
+                    <rect x="70%" y="55" rx="3" ry="3" width="18%" height="10" />
+                    <rect x="90%" y="55" rx="3" ry="3" width="10%" height="10" />
+
+                    {/* Content lines */}
+                    <rect x="48%" y="80" rx="3" ry="3" width="48%" height="12" />
+                    <rect x="48%" y="100" rx="3" ry="3" width="40%" height="12" />
+                    <rect x="48%" y="120" rx="3" ry="3" width="45%" height="12" />
+                </ContentLoader>
+            ))}
+        </div>
+    );
+};

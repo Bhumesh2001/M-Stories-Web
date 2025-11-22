@@ -39,14 +39,6 @@ const Section8 = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-32">
-        Loading content...
-      </div>
-    );
-  }
-
   return (
     <section className="mt-10">
       <div className="container px-4 mx-auto">
