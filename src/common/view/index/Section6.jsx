@@ -1,54 +1,9 @@
-// import { Link } from "gatsby"
-// import React from "react"
-// import layout17 from "../../../assets/images/layout-2/17.jpg"
-
-// const Section6 = () => {
-//   return (
-//     <React.Fragment>
-//       <section className="mt-8" data-aos="zoom-in">
-//         <div className="container px-4 mx-auto">
-//           <div className="">
-//             <figure className="relative cursor-pointer">
-//               <div>
-//                 <div
-//                   className="px-3 py-10 transition duration-300 ease-in-out bg-center bg-cover rounded-2xl sm:px-8 sm:py:16"
-//                   style={{ backgroundImage: `url(${layout17})` }}
-//                 >
-//                   <figcaption className="flex items-center px-4 text-lg">
-//                     <div>
-//                       <div className="text-sm text-white uppercase">
-//                         Technology
-//                       </div>
-//                       <div className="max-w-sm my-3 text-xl font-medium leading-normal text-white capitalize">
-//                         vulputate Vivamus Tortor Enim, Semper Lotem imusdsf
-//                         Semper Et
-//                       </div>
-//                       <Link
-//                         to="/single-post"
-//                         className="py-2.5 px-5 text-sm font-medium bg-white rounded-full border hover:bg-gray-100 hover:text-[#062db9]"
-//                       >
-//                         See More Info
-//                       </Link>
-//                     </div>
-//                   </figcaption>
-//                 </div>
-//               </div>
-//             </figure>
-//           </div>
-//         </div>
-//       </section>
-//     </React.Fragment>
-//   )
-// }
-
-// export default Section6
-
-
 import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
 import { callApi } from "../../../services/apiHandler"
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { CategorySkeleton } from '../../Loader';
 
 const Section6 = ({ categoryName = "Technology" }) => {
   const [category, setCategory] = useState(null)
@@ -82,23 +37,19 @@ const Section6 = ({ categoryName = "Technology" }) => {
 
 
   if (loading) {
-    return (
-      <section className="mt-8 text-center">
-        <p className="text-gray-500">Loading {categoryName} category...</p>
-      </section>
-    )
+    return <CategorySkeleton />
   }
 
   if (!category) {
     return (
-      <section className="mt-8 text-center">
-        <p className="text-red-500">{categoryName} category not found.</p>
+      <section className="mt-10 text-center">
+        <p className="text-red-500">{categoryName} Category not found.</p>
       </section>
     )
   }
 
   return (
-    <section className="mt-8" data-aos="zoom-in">
+    <section className="mt-10" data-aos="zoom-in">
       <div className="container px-4 mx-auto">
         <div>
           <figure className="relative cursor-pointer">
@@ -134,6 +85,6 @@ const Section6 = ({ categoryName = "Technology" }) => {
       </div>
     </section>
   )
-}
+};
 
 export default Section6

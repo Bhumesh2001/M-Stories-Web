@@ -13,6 +13,7 @@ import img4 from "../assets/images/22.jpg"
 import img5 from "../assets/images/4.jpg"
 import img6 from "../assets/images/6.jpg"
 import { callApi } from "../services/apiHandler";
+import { CategorySkeleton_ } from '../common/Loader';
 
 const PostFormatStandard = () => {
   const swiperData = [
@@ -61,7 +62,11 @@ const PostFormatStandard = () => {
             {/* Categories - responsive grid */}
             <div className="col-span-2">
               {loading ? (
-                <p className="text-gray-500">Loading categories...</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <CategorySkeleton_ key={i} />
+                  ))}
+                </div>
               ) : (
                 <>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -138,7 +143,7 @@ const PostFormatStandard = () => {
       </Layout5>
     </React.Fragment>
   )
-}
+};
 
 export const Head = () => <Seo title="Categories" />
 

@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 import { callApi } from "../../../services/apiHandler";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { PostSkeleton } from '../../Loader';
 
 const Section8 = () => {
   const [latestPosts, setLatestPosts] = useState([]);
@@ -46,9 +47,12 @@ const Section8 = () => {
                 </h5>
               </div>
 
+              {/* SKELETON LOADER */}
               {loading && (
-                <div className="flex justify-center items-center h-48">
-                  <p className="text-lg text-blue-400 animate-pulse">Loading posts...</p>
+                <div className="space-y-4">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <PostSkeleton key={i} />
+                  ))}
                 </div>
               )}
 
@@ -105,7 +109,7 @@ const Section8 = () => {
               ))}
 
               <div className="flex justify-center">
-                <Link to="/blog-tag" className="flex-shrink-0 text-blue-500">
+                <Link to="/blog-tag" className="flex-shrink-0 font-bold text-blue-500">
                   See more...
                 </Link>
               </div>
@@ -137,8 +141,8 @@ const Section8 = () => {
                   },
                   {
                     name: "LinkedIn",
-                    icon: "ri-linkedin-fill", 
-                    color: "bg-[#0077B5]",   
+                    icon: "ri-linkedin-fill",
+                    color: "bg-[#0077B5]",
                     count: "22.9k",
                     link: "https://www.linkedin.com"
                   },
