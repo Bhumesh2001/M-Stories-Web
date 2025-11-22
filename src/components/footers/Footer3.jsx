@@ -163,7 +163,9 @@ const Footer3 = () => {
         </div>
 
         <div className="container px-4 py-4 mx-auto text-xs text-center text-gray-400">
-          <p>Copyright © 2025 Blogs News . All Rights Reserved</p>
+          <p>
+            Copyright © {new Date().getFullYear()} Blogs News. All Rights Reserved
+          </p>
         </div>
       </footer>
     </React.Fragment>
