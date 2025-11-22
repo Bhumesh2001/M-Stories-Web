@@ -2,90 +2,103 @@ import React, { useEffect, useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay, Navigation } from "swiper/modules"
 import { callApi } from "../../../services/apiHandler"
-import { BlogSkeleton } from '../../Loader';
+import { BlogSkeleton } from "../../Loader"
 
 const Section4 = () => {
   const [blogs, setBlogs] = useState([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const fetchBlogs = async () => {
+    let isMounted = true
+
+    const loadBlogs = async () => {
       try {
         const res = await callApi("/blogs")
-        if (res.success && res.data.blogs.length > 0) {
-          setBlogs(res.data.blogs)
+        if (isMounted && res.success) {
+          setBlogs(res.data.blogs || [])
         }
       } catch (err) {
         console.error("Error fetching blogs:", err)
       } finally {
-        setLoading(false)
+        if (isMounted) setLoading(false)
       }
     }
-    fetchBlogs()
+
+    loadBlogs()
+    return () => {
+      isMounted = false
+    }
   }, [])
 
-  return (
-    <React.Fragment>
-      <div className="mt-10">
-        <div className="container px-4 mx-auto">
-          <div className="p-5 overflow-hidden rounded-xl bg-[#fce9e8] dark:bg-gray-800/70">
-            <h3 className="mb-4 text-xl font-bold tracking-normal uppercase dark:text-white">
-              Trending Now
-            </h3>
-
-            {loading ? (
-              <BlogSkeleton />
-            ) : (
-              <Swiper
-                slidesPerView={1}
-                spaceBetween={20}
-                autoplay={{
-                  delay: 2000,
-                  disableOnInteraction: false,
-                }}
-                breakpoints={{
-                  640: { slidesPerView: 1 },
-                  768: { slidesPerView: 2 },
-                  1024: { slidesPerView: 4 },
-                  1240: { slidesPerView: 5 },
-                }}
-                loop={true}
-                navigation={{
-                  nextEl: ".swiper-button-next",
-                  prevEl: ".swiper-button-prev",
-                }}
-                modules={[Autoplay, Navigation]}
-                className="relative center-post"
-                dir="ltr"
-              >
-                {blogs.map((blog, idx) => (
-                  <SwiperSlide key={blog._id}>
-                    <div className="flex items-center md:flex-row md:max-w-xl md:items-start">
-                      <span className="text-[#E32C26] text-3xl font-semibold dark:text-[#E32C26]">
-                        0{idx + 1}
-                      </span>
-                      <div className="flex flex-col p-4 sm:py-0">
-                        <div className="block gap-4 text-[12px] text-[#E32C26] dark:text-gray-400 uppercase">
-                          {blog.category?.name || "General"}
-                        </div>
-                        <h3 className="text-sm hover:text-[#E32C26] dark:text-white dark:hover:text-[#E32C26] font-medium">
-                          {blog.title}
-                        </h3>
-                        <div className="block gap-4 text-[11px] text-gray-500 dark:text-gray-400 uppercase">
-                          <span className="me-2 lg:me-1">{blog.reporter || "Unknown"}</span>
-                          <span>{new Date(blog.createdAt).toDateString()}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            )}
-          </div>
+  if (loading) {
+    return (
+      <div className="mt-10 container px-4 mx-auto">
+        <div className="p-5 overflow-hidden rounded-xl bg-[#fce9e8] dark:bg-gray-800/70">
+          <h3 className="mb-4 text-xl font-bold uppercase dark:text-white">
+            Trending Now
+          </h3>
+          <BlogSkeleton />
         </div>
       </div>
-    </React.Fragment>
+    )
+  }
+
+  return (
+    <div className="mt-10">
+      <div className="container px-4 mx-auto">
+        <div className="p-5 overflow-hidden rounded-xl bg-[#fce9e8] dark:bg-gray-800/70">
+          <h3 className="mb-4 text-xl font-bold uppercase dark:text-white">
+            Trending Now
+          </h3>
+
+          <Swiper
+            slidesPerView={1}
+            spaceBetween={20}
+            autoplay={{ delay: 2000, disableOnInteraction: false }}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 2 },
+              1024: { slidesPerView: 4 },
+              1240: { slidesPerView: 5 },
+            }}
+            loop
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            modules={[Autoplay, Navigation]}
+            className="relative"
+            dir="ltr"
+          >
+            {blogs.map((blog, index) => (
+              <SwiperSlide key={blog._id}>
+                <div className="flex items-center md:flex-row md:max-w-xl md:items-start">
+                  <span className="text-[#E32C26] text-3xl font-semibold">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <div className="flex flex-col p-4 sm:py-0">
+                    <span className="text-[12px] text-[#E32C26] uppercase">
+                      {blog.category?.name || "General"}
+                    </span>
+
+                    <h3 className="text-sm font-medium dark:text-white hover:text-[#E32C26] dark:hover:text-[#E32C26]">
+                      {blog.title}
+                    </h3>
+
+                    <div className="text-[11px] text-gray-500 dark:text-gray-400 uppercase">
+                      <span className="me-2">{blog.reporter || "Unknown"}</span>
+                      <span>{new Date(blog.createdAt).toDateString()}</span>
+                    </div>
+                  </div>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </div>
+    </div>
   )
-};
+}
 
 export default Section4

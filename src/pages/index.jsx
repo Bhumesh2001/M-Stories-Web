@@ -13,7 +13,8 @@ import Section8HotStory from "../common/view/index-3/Section8"
 const Index = () => {
 
   useEffect(() => {
-    Aos.init({ duration: 1000, disable: "mobile", offset: 100, once: false })
+    Aos.init({ duration: 1000, disable: "mobile", offset: 100, once: true })
+
     // refresh aos on scroll
     const handleScroll = () => {
       Aos.refresh()

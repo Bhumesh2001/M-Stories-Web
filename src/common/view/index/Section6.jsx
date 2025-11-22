@@ -1,90 +1,85 @@
 import { Link } from "gatsby"
 import React, { useEffect, useState } from "react"
 import { callApi } from "../../../services/apiHandler"
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { CategorySkeleton } from '../../Loader';
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { CategorySkeleton } from "../../Loader"
 
 const Section6 = ({ categoryName = "Technology" }) => {
   const [category, setCategory] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  // Fetch Latest Category
   useEffect(() => {
-    const fetchCategory = async () => {
+    const loadCategory = async () => {
       try {
-        const data = await callApi("/categories")
-        if (data.success && data.data.categories.length > 0) {
-          // ✅ Latest category (assuming backend sends sorted by createdAt: -1)
-          const latestCategory = data.data.categories[0]
+        const res = await callApi("/categories")
+        const list = res?.data?.categories || []
 
-          if (latestCategory) {
-            setCategory(latestCategory)
-          }
+        // Use the first category (assuming sorted)
+        if (list.length > 0) {
+          setCategory(list[0])
         }
-      } catch (error) {
-        console.error("Error fetching category:", error)
+      } catch (err) {
+        console.error("Category fetch failed:", err)
       } finally {
         setLoading(false)
       }
     }
 
-    fetchCategory()
-  }, [categoryName])
+    loadCategory()
+  }, [])
 
+  // AOS initialization
   useEffect(() => {
-    AOS.init({ duration: 600 });
-  }, [category]);
+    AOS.init({ duration: 600 })
+  }, [])
 
-
-  if (loading) {
-    return <CategorySkeleton />
-  }
+  if (loading) return <CategorySkeleton />
 
   if (!category) {
     return (
       <section className="mt-10 text-center">
-        <p className="text-red-500">{categoryName} Category not found.</p>
+        <p className="text-red-500">{categoryName} category not found.</p>
       </section>
     )
   }
 
+  const cover = category.images?.[0]?.url || "/default-category.jpg"
+
   return (
     <section className="mt-10" data-aos="zoom-in">
       <div className="container px-4 mx-auto">
-        <div>
-          <figure className="relative cursor-pointer">
-            <div>
-              <div
-                className="px-3 py-10 transition duration-300 ease-in-out bg-center bg-cover rounded-2xl sm:px-8 sm:py-16"
-                style={{
-                  backgroundImage: `url(${category.images?.[0]?.url || "/default-category.jpg"})`,
-                }}
-              >
-                <figcaption className="flex items-center px-4 text-lg">
-                  <div>
-                    <div className="text-sm text-white uppercase">
-                      {category.name}
-                    </div>
-                    <div
-                      className="max-w-sm my-3 text-xl font-medium leading-normal text-white capitalize"
-                      dangerouslySetInnerHTML={{ __html: category.description }}
-                    ></div>
+        <figure className="relative rounded-2xl overflow-hidden cursor-pointer">
 
-                    <Link
-                      to={`/blog-tag?id=${category._id}&model=category`}
-                      className="py-2.5 px-5 text-sm font-medium bg-white rounded-full border hover:bg-gray-100 hover:text-[#062db9] transition"
-                    >
-                      See More Info
-                    </Link>
-                  </div>
-                </figcaption>
-              </div>
-            </div>
-          </figure>
-        </div>
+          <div
+            className="px-4 py-10 sm:px-8 sm:py-16 bg-cover bg-center rounded-2xl transition"
+            style={{ backgroundImage: `url(${cover})` }}
+          >
+            <figcaption className="text-white">
+              <p className="text-sm uppercase">{category.name}</p>
+
+              <div
+                className="max-w-sm my-3 text-xl font-medium leading-normal capitalize"
+                dangerouslySetInnerHTML={{
+                  __html: category.description || "",
+                }}
+              />
+
+              <Link
+                to={`/blog-tag?id=${category._id}&model=category`}
+                className="py-2.5 px-5 text-sm font-medium bg-white text-gray-800 rounded-full border hover:bg-gray-100 transition"
+              >
+                See More Info
+              </Link>
+
+            </figcaption>
+          </div>
+
+        </figure>
       </div>
     </section>
   )
-};
+}
 
 export default Section6

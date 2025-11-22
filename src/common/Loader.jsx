@@ -369,3 +369,75 @@ export function BlogListSkeleton() {
         </div>
     );
 };
+
+export function SinglePostSkeleton() {
+    return (
+        <div className="container mx-auto mt-8 px-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 gap-8">
+
+                {/* Left Section */}
+                <div className="col-span-1 md:col-span-2">
+                    <ContentLoader
+                        speed={1.5}
+                        width={"100%"}
+                        height={600}
+                        backgroundColor="#d1d5db"
+                        foregroundColor="#e5e7eb"
+                    >
+                        {/* Title */}
+                        <rect x="0" y="0" rx="6" ry="6" width="70%" height="30" />
+
+                        {/* meta info */}
+                        <rect x="0" y="50" rx="6" ry="6" width="20%" height="14" />
+                        <rect x="25%" y="50" rx="6" ry="6" width="20%" height="14" />
+                        <rect x="50%" y="50" rx="6" ry="6" width="20%" height="14" />
+
+                        {/* Feature Image */}
+                        <rect x="0" y="90" rx="10" ry="10" width="100%" height="280" />
+
+                        {/* Content lines */}
+                        {Array.from({ length: 10 }).map((_, i) => (
+                            <rect
+                                key={i}
+                                x="0"
+                                y={390 + i * 25}
+                                rx="5"
+                                ry="5"
+                                width={i % 3 === 0 ? "90%" : "100%"}
+                                height="14"
+                            />
+                        ))}
+                    </ContentLoader>
+                </div>
+
+                {/* Right Sidebar */}
+                <div className="col-span-1">
+                    <ContentLoader
+                        speed={1.5}
+                        width={"100%"}
+                        height={600}
+                        backgroundColor="#d1d5db"
+                        foregroundColor="#e5e7eb"
+                    >
+                        {/* search bar */}
+                        <rect x="0" y="0" rx="8" ry="8" width="100%" height="45" />
+
+                        {/* sidebar items */}
+                        {Array.from({ length: 6 }).map((_, i) => (
+                            <rect
+                                key={i}
+                                x="0"
+                                y={70 + i * 70}
+                                rx="8"
+                                ry="8"
+                                width="100%"
+                                height="55"
+                            />
+                        ))}
+                    </ContentLoader>
+                </div>
+
+            </div>
+        </div>
+    );
+};

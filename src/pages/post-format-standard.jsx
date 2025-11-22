@@ -14,17 +14,18 @@ import img5 from "../assets/images/4.jpg"
 import img6 from "../assets/images/6.jpg"
 import { callApi } from "../services/apiHandler";
 import { CategorySkeleton_ } from '../common/Loader';
+import ClientOnly from "../components/utils/ClientOnly";
+
+const swiperData = [
+  { id: 1, margin: false, image: img1 },
+  { id: 2, margin: true, image: img2 },
+  { id: 3, margin: true, image: img3 },
+  { id: 4, margin: false, image: img4 },
+  { id: 5, margin: true, image: img5 },
+  { id: 6, margin: true, image: img6 },
+];
 
 const PostFormatStandard = () => {
-  const swiperData = [
-    { id: 1, margin: false, image: img1 },
-    { id: 2, margin: true, image: img2 },
-    { id: 3, margin: true, image: img3 },
-    { id: 4, margin: false, image: img4 },
-    { id: 5, margin: true, image: img5 },
-    { id: 6, margin: true, image: img6 },
-  ]
-
   const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -35,7 +36,7 @@ const PostFormatStandard = () => {
   const fetchCategories = async (pageNumber = 1) => {
     setLoading(true)
     try {
-      const data = await callApi(`/categories?page=${pageNumber}&limit=10`) // 10 per page
+      const data = await callApi(`/categories?page=${pageNumber}&limit=10`)
       setCategories(data.data.categories || [])
       setTotalPages(data.data.pagination?.totalPages || 1)
       setPage(data.data.pagination?.page || 1)
@@ -80,7 +81,12 @@ const PostFormatStandard = () => {
                         <img
                           src={cat.images?.[0]?.url || "/default-category.jpg"}
                           alt={cat.name}
+                          loading="lazy"
+                          decoding="async"
+                          width={1200}   // approximate intrinsic size or real size
+                          height={720}   // approximate intrinsic size
                           className="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500"
+                          style={{ willChange: "transform" }}
                         />
                         {/* Overlay */}
                         <div className="absolute inset-0 bg-black bg-opacity-60 flex flex-col justify-end p-6">
@@ -128,15 +134,22 @@ const PostFormatStandard = () => {
             </div>
 
             {/* Sidebar */}
-            <div className="col-span-1 overflow-hidden">
+            <div className="col-span-1">
               <Social2 />
-              <PostList />
+
+              <ClientOnly>
+                <PostList />
+              </ClientOnly>
+
               <div className="main-title relative">
                 <h2 className="text-2xl font-semibold mt-6 mb-6 lg:ps-4 dark:text-white">
                   Most Popular
                 </h2>
               </div>
-              <MostPopular swiperData={swiperData} />
+
+              <ClientOnly>
+                <MostPopular swiperData={swiperData} />
+              </ClientOnly>
             </div>
           </div>
         </div>
