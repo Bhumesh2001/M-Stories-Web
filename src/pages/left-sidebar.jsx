@@ -23,7 +23,7 @@ const LeftSidebar = () => {
     { id: 5, margin: true, image: img5 },
     { id: 6, margin: true, image: img6 },
   ]
-  
+
   return (
     <React.Fragment>
       <Layout5>

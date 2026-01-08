@@ -1,79 +1,79 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { Link } from "gatsby";
-import { callApi } from "../../../services/apiHandler";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { PostSkeleton } from "../../Loader";
+import React, { useState, useEffect, useCallback } from "react"
+import { Link } from "gatsby"
+import { callApi } from "../../../services/apiHandler"
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { PostSkeleton } from "../../Loader"
 
 const socialLinks = [
   {
     name: "Facebook",
     icon: "ri-facebook-circle-fill",
-    color: "bg-[#062DB9]",
+    // Deep blue to Royal blue gradient
+    color: "bg-gradient-to-r from-[#1877F2] to-[#062DB9] hover:from-[#166FE5] hover:to-[#0528A7]",
     count: "42.2k",
     link: "https://www.facebook.com/muslimstoriesmedia",
   },
   {
     name: "Twitter",
     icon: "ri-twitter-x-line",
-    color: "bg-[#20A1EB]",
+    // Sky blue to Twitter blue gradient
+    color: "bg-gradient-to-r from-[#1DA1F2] to-[#0D8BD9] hover:from-[#1A91DA] hover:to-[#0B7ABF]",
     count: "10.1m",
     link: "https://x.com/muslimstoriesm",
   },
   {
     name: "LinkedIn",
     icon: "ri-linkedin-fill",
-    color: "bg-[#0077B5]",
+    // Professional blue gradient
+    color: "bg-gradient-to-r from-[#0077B5] to-[#004182] hover:from-[#00669C] hover:to-[#00356A]",
     count: "22.9k",
-    link: "https://www.linkedin.com",
+    link: "https://www.linkedin.com/company/muslimstoriesmedia/",
   },
   {
-    name: "Instagram",
-    icon: "ri-instagram-line",
-    color:
-      "bg-gradient-to-r from-[#863FA6] via-[#E12C61] to-[#F46F46] hover:from-[#683181] hover:via-[#c91d50] hover:to-[#f25626]",
-    count: "50.2k",
-    link: "https://www.instagram.com",
+    name: "YouTube",
+    icon: "ri-youtube-line",
+    color: "bg-gradient-to-r from-[#FF3B3B] via-[#FF0000] to-[#C80000] hover:from-[#E63636] hover:via-[#E60000] hover:to-[#A60000]",
+    count: "120k",
+    link: "https://www.youtube.com/@muslimstoriesmedia",
   },
 ];
 
 const Section8 = () => {
-  const [latestPosts, setLatestPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
+  const [latestPosts, setLatestPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
-  const isHTML = (str) => /<\/?[a-z][\s\S]*>/i.test(str);
+  const isHTML = str => /<\/?[a-z][\s\S]*>/i.test(str)
 
   // Fetch posts
   const fetchLatestPosts = useCallback(async () => {
     try {
-      const res = await callApi("/blogs");
-      setLatestPosts(res?.data?.blogs?.slice(0, 4) || []);
+      const res = await callApi("/blogs")
+      setLatestPosts(res?.data?.blogs?.slice(0, 4) || [])
     } catch (err) {
-      console.error("Error fetching blogs:", err);
-      setError(true);
+      console.error("Error fetching blogs:", err)
+      setError(true)
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
-    fetchLatestPosts();
-  }, [fetchLatestPosts]);
+    fetchLatestPosts()
+  }, [fetchLatestPosts])
 
   useEffect(() => {
-    AOS.init({ duration: 600 });
-  }, []);
+    AOS.init({ duration: 600 })
+  }, [])
 
   return (
     <section className="mt-8">
       <div className="container px-4 mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
           {/* LEFT BLOCK – Latest Posts */}
           <div className="md:col-span-2" data-aos="fade-up">
             <div className="p-5 bg-white rounded-lg dark:bg-gray-800/70">
-
               <h5 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
                 Latest Post
               </h5>
@@ -81,7 +81,7 @@ const Section8 = () => {
               {/* Loading */}
               {loading && (
                 <div className="space-y-4">
-                  {[1, 2, 3, 4].map((i) => (
+                  {[1, 2, 3, 4].map(i => (
                     <PostSkeleton key={i} />
                   ))}
                 </div>
@@ -99,16 +99,14 @@ const Section8 = () => {
               {/* No Data */}
               {!loading && !error && latestPosts.length === 0 && (
                 <div className="flex justify-center items-center h-48">
-                  <p className="text-lg text-gray-500">
-                    No posts available.
-                  </p>
+                  <p className="text-lg text-gray-500">No posts available.</p>
                 </div>
               )}
 
               {/* POSTS LIST */}
               {!loading &&
                 !error &&
-                latestPosts.map((item) => (
+                latestPosts.map(item => (
                   <div
                     className="flex flex-col sm:flex-row gap-4 mb-6"
                     key={item._id}
@@ -165,10 +163,7 @@ const Section8 = () => {
               {/* See More */}
               {!loading && !error && (
                 <div className="flex justify-center">
-                  <Link
-                    to="/blog-tag"
-                    className="font-bold text-blue-500"
-                  >
+                  <Link to="/blog-tag" className="font-bold text-blue-500">
                     See more...
                   </Link>
                 </div>
@@ -178,7 +173,6 @@ const Section8 = () => {
 
           {/* SIDEBAR */}
           <div className="md:col-span-1 h-full space-y-8" data-aos="flip-right">
-
             {/* Join With Us */}
             <div className="p-6 bg-white dark:bg-gray-800/70 rounded-xl shadow">
               <h5 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
@@ -237,12 +231,11 @@ const Section8 = () => {
                 </button>
               </form>
             </div>
-
           </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Section8;
+export default Section8

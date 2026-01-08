@@ -14,7 +14,6 @@ const Section2 = () => {
       <section className="mt-8">
         <div className="container px-4 mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-
             <div className="col-span-5 md:col-span-3" data-aos="flip-left">
               <Swiper
                 slidesPerView={1}
@@ -251,9 +250,24 @@ const Section2 = () => {
                     </div>
                     <ul>
                       {[
-                        { name: "Facebook", icon: "ri-facebook-circle-fill", color: "bg-[#062DB9]", count: "42.2k" },
-                        { name: "Twitter", icon: "ri-twitter-x-line", color: "bg-[#20A1EB]", count: "10.1m" },
-                        { name: "Twitch", icon: "ri-twitch-line", color: "bg-[#830899]", count: "22.9k" },
+                        {
+                          name: "Facebook",
+                          icon: "ri-facebook-circle-fill",
+                          color: "bg-[#062DB9]",
+                          count: "42.2k",
+                        },
+                        {
+                          name: "Twitter",
+                          icon: "ri-twitter-x-line",
+                          color: "bg-[#20A1EB]",
+                          count: "10.1m",
+                        },
+                        {
+                          name: "Twitch",
+                          icon: "ri-twitch-line",
+                          color: "bg-[#830899]",
+                          count: "22.9k",
+                        },
                         {
                           name: "Instagram",
                           icon: "ri-instagram-line",
@@ -264,7 +278,9 @@ const Section2 = () => {
                       ].map(({ name, icon, color, count }) => (
                         <li key={name}>
                           <Link to="#" target="_blank">
-                            <div className={`${color} text-white rounded-full py-2 px-5 mb-2 hover:opacity-90 text-sm`}>
+                            <div
+                              className={`${color} text-white rounded-full py-2 px-5 mb-2 hover:opacity-90 text-sm`}
+                            >
                               <div className="flex items-center justify-between">
                                 <div className="flex items-center gap-2">
                                   <i className={`text-base ${icon}`}></i>

@@ -30,7 +30,7 @@ const UsingSSR = ({ serverData }) => {
       <Link to="/">Go back to the homepage</Link>
     </Layout>
   )
-};
+}
 
 export const Head = () => <Seo title="Using SSR" />
 
@@ -52,4 +52,4 @@ export async function getServerData() {
       props: {},
     }
   }
-};
+}

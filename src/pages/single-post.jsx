@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "gatsby";
-import Seo from "../components/seo";
-import Social from "../common/Social";
-import PostList from "../common/PostList";
-import Layout5 from "../common/layout/Layout5";
-import { callApi } from "../services/apiHandler";
-import { SinglePostSkeleton } from "../common/Loader";
+import React, { useEffect, useState } from "react"
+import { Link } from "gatsby"
+import Seo from "../components/seo"
+import Social from "../common/Social"
+import PostList from "../common/PostList"
+import Layout5 from "../common/layout/Layout5"
+import { callApi } from "../services/apiHandler"
+import { SinglePostSkeleton } from "../common/Loader"
 
 const SinglePost = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   const searchParams =
     typeof window !== "undefined"
       ? new URLSearchParams(window.location.search)
-      : new URLSearchParams();
+      : new URLSearchParams()
 
-  const id = searchParams.get("id");
-  const model = searchParams.get("model");
+  const id = searchParams.get("id")
+  const model = searchParams.get("model")
 
-  const isHTML = (str) => /<\/?[a-z][\s\S]*>/i.test(str);
+  const isHTML = str => /<\/?[a-z][\s\S]*>/i.test(str)
 
   useEffect(() => {
-    if (!id || !model) return;
+    if (!id || !model) return
 
     const fetchData = async () => {
       try {
@@ -31,31 +31,38 @@ const SinglePost = () => {
           news: `/news/${id}`,
           story: `/story/${id}`,
           category: `/categories/${id}`,
-        };
+        }
 
-        const url = urlMap[model];
-        if (!url) return;
+        const url = urlMap[model]
+        if (!url) return
 
-        const res = await callApi(url);
-        setData(res.data);
+        const res = await callApi(url)
+        setData(res.data)
       } catch (err) {
-        console.error("Fetch Error:", err);
+        console.error("Fetch Error:", err)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchData();
-  }, [id, model]);
+    fetchData()
+  }, [id, model])
 
-  if (loading) return <Layout5><SinglePostSkeleton /></Layout5>;
+  if (loading)
+    return (
+      <Layout5>
+        <SinglePostSkeleton />
+      </Layout5>
+    )
 
   if (!data)
     return (
       <Layout5>
-        <div className="text-center py-20 text-xl text-red-500">No Data Found</div>
+        <div className="text-center py-20 text-xl text-red-500">
+          No Data Found
+        </div>
       </Layout5>
-    );
+    )
 
   return (
     <Layout5>
@@ -69,16 +76,25 @@ const SinglePost = () => {
 
             <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-6 dark:text-gray-400">
               {data.author && (
-                <span><i className="ri-user-fill"></i> {data.author}</span>
+                <span>
+                  <i className="ri-user-fill"></i> {data.author}
+                </span>
               )}
               {data.reporter && (
-                <span><i className="ri-user-fill"></i> {data.reporter}</span>
+                <span>
+                  <i className="ri-user-fill"></i> {data.reporter}
+                </span>
               )}
               {data.createdAt && (
-                <span><i className="ri-calendar-fill"></i> {new Date(data.createdAt).toDateString()}</span>
+                <span>
+                  <i className="ri-calendar-fill"></i>{" "}
+                  {new Date(data.createdAt).toDateString()}
+                </span>
               )}
               {data.category?.name && (
-                <span><i className="ri-bookmark-fill"></i> {data.category.name}</span>
+                <span>
+                  <i className="ri-bookmark-fill"></i> {data.category.name}
+                </span>
               )}
             </div>
 
@@ -96,7 +112,11 @@ const SinglePost = () => {
 
             <div className="text-gray-700 dark:text-gray-300 leading-7 whitespace-pre-line">
               {isHTML(data.description || data.content) ? (
-                <span dangerouslySetInnerHTML={{ __html: data.description || data.content }} />
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: data.description || data.content,
+                  }}
+                />
               ) : (
                 data.description || data.content
               )}
@@ -136,9 +156,9 @@ const SinglePost = () => {
         </div>
       </div>
     </Layout5>
-  );
-};
+  )
+}
 
-export const Head = () => <Seo title="Single Post" />;
+export const Head = () => <Seo title="Single Post" />
 
-export default SinglePost;
+export default SinglePost

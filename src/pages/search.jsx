@@ -5,10 +5,9 @@ import Social from "../common/Social"
 import PostList from "../common/PostList"
 import BlogPosts from "../common/BlogPosts"
 import Seo from "../components/seo"
-import blogPosts from '../common/data/blogData';
+import blogPosts from "../common/data/blogData"
 
 const Search = () => {
-
   return (
     <React.Fragment>
       <Layout5>

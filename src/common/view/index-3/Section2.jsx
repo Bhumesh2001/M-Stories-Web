@@ -37,9 +37,8 @@ const Section2 = () => {
   return (
     <section className="mt-10" data-aos="fade-up">
       <div className="container px-4 mx-auto">
-
         <div className="grid grid-cols-3 gap-4 sm:grid-cols-4 lg:grid-cols-3 lg:gap-4">
-          {news.map((item) => {
+          {news.map(item => {
             const cover = item.images?.[0]?.url || "/default-news.jpg"
 
             return (
@@ -48,23 +47,22 @@ const Section2 = () => {
                 className="col-span-3 sm:col-span-2 lg:col-span-1 bg-[#f5f5f5] p-3 sm:p-4 rounded-2xl dark:bg-gray-800/70"
               >
                 <div className="flex items-center gap-3">
-
                   {/* Left text block */}
                   <div className="flex-1 min-w-0">
-
                     <span className="text-gray-700 text-xs uppercase border dark:border-gray-700 px-2.5 py-1 rounded-full dark:bg-gray-800 dark:text-gray-300">
                       {item.category?.name || "General"}
                     </span>
 
                     <h6 className="mt-2 text-sm font-medium text-gray-900 dark:text-white hover:text-[#5719DB] dark:hover:text-[#7b51ff] leading-snug">
-                      <Link to={`/single-post?id=${item._id}&model=news`}>{item.title}</Link>
+                      <Link to={`/single-post?id=${item._id}&model=news`}>
+                        {item.title}
+                      </Link>
                     </h6>
 
                     <div className="text-[11px] text-gray-500 dark:text-gray-400 uppercase mt-1">
                       <span className="me-2">{item.reporter || "Unknown"}</span>
                       <span>{new Date(item.createdAt).toDateString()}</span>
                     </div>
-
                   </div>
 
                   {/* Right image */}
@@ -78,10 +76,9 @@ const Section2 = () => {
             )
           })}
         </div>
-
       </div>
     </section>
   )
-};
+}
 
 export default Section2

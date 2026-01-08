@@ -8,7 +8,7 @@
 import * as React from "react"
 
 import "remixicon/fonts/remixicon.css"
-import "../assets/scss/tailwind.scss"
+import "../assets/scss/tailwind.css"
 
 const Layout = ({ children }) => {
   return (

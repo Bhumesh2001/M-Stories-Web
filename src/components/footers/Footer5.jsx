@@ -263,7 +263,10 @@ const Footer5 = () => {
                   </Link>
                 </li>
                 <li className="py-1">
-                  <Link to="/post-format-standard" className="hover:text-[#ff3750] text-sm">
+                  <Link
+                    to="/post-format-standard"
+                    className="hover:text-[#ff3750] text-sm"
+                  >
                     Category
                   </Link>
                 </li>

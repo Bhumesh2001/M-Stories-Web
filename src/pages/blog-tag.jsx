@@ -6,78 +6,81 @@ import Layout5 from "../common/layout/Layout5"
 import Social from "../common/Social"
 import Seo from "../components/seo"
 import { callApi } from "../services/apiHandler"
-import { BlogListSkeleton } from './../common/Loader';
+import { BlogListSkeleton } from "./../common/Loader"
 
 const BlogTag = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [allBlogs, setAllBlogs] = useState([]);
+  const [blogs, setBlogs] = useState([])
+  const [loading, setLoading] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
+  const [allBlogs, setAllBlogs] = useState([])
 
   // pagination state
-  const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(1)
 
   // Extract query params
-  const searchParams = new URLSearchParams(typeof window !== "undefined" ? window.location.search : "");
-  const id = searchParams.get("id");
+  const searchParams = new URLSearchParams(
+    typeof window !== "undefined" ? window.location.search : "",
+  )
+  const id = searchParams.get("id")
   // const model = searchParams.get("model"); // blog, news, story, category
 
   useEffect(() => {
     Aos.init({ duration: 1000, disable: "mobile", offset: 100, once: false })
-    const handleScroll = () => Aos.refresh();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    const handleScroll = () => Aos.refresh()
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   useEffect(() => {
     // Fetch blogs with pagination
     const fetchBlogs = async (pageNumber = 1) => {
-      setLoading(true);
+      setLoading(true)
       try {
-        let url;
+        let url
 
         if (id) {
-          url = `/blogs/category/${id}?page=${pageNumber}&limit=10`;
+          url = `/blogs/category/${id}?page=${pageNumber}&limit=10`
         } else {
-          url = `/blogs?page=${pageNumber}&limit=10`;
+          url = `/blogs?page=${pageNumber}&limit=10`
         }
-        const data = await callApi(url);
-        setAllBlogs(data.data.blogs || []);
-        setBlogs(data.data.blogs || []);
-        setTotalPages(data.data.pagination.totalPages);
-        setPage(data.data.pagination.page);
+        const data = await callApi(url)
+        setAllBlogs(data.data.blogs || [])
+        setBlogs(data.data.blogs || [])
+        setTotalPages(data.data.pagination.totalPages)
+        setPage(data.data.pagination.page)
       } catch (err) {
-        console.error("API call failed:", err);
+        console.error("API call failed:", err)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
-    fetchBlogs(page);
-  }, [page, id]);
+    }
+    fetchBlogs(page)
+  }, [page, id])
 
   // Handle search logic
   const handleSearch = () => {
-    if (searchQuery.trim() === '') {
-      setBlogs(allBlogs);
+    if (searchQuery.trim() === "") {
+      setBlogs(allBlogs)
     } else {
-      const filteredBlogs = allBlogs.filter(blog =>
-        blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        blog.author.toLowerCase().includes(searchQuery.toLowerCase())
-      );
-      setBlogs(filteredBlogs);
+      const filteredBlogs = allBlogs.filter(
+        blog =>
+          blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          blog.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          blog.author.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+      setBlogs(filteredBlogs)
     }
-  };
+  }
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      handleSearch();
+  const handleKeyPress = event => {
+    if (event.key === "Enter") {
+      handleSearch()
     }
-  };
+  }
 
   // Helper function
-  const isHTML = (str) => /<\/?[a-z][\s\S]*>/i.test(str);
+  const isHTML = str => /<\/?[a-z][\s\S]*>/i.test(str)
 
   return (
     <Layout5>
@@ -85,60 +88,68 @@ const BlogTag = () => {
 
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xs:gap-0 sm:gap-8">
-
           {/* Blog List */}
           <div className="col-span-1 md:col-span-2">
             <div className="grid">
-
               {loading && <BlogListSkeleton />}
 
               {!loading && blogs.length === 0 && (
                 <p className="text-center text-gray-500">No blogs found.</p>
               )}
 
-              {!loading && blogs.map((post) => (
-                <div className="lg:mb-8" key={post._id}>
-                  <div className="block lg:flex gap-4">
-                    <div className="lg:w-1/2">
-                      <Link to={`/single-post?id=${post._id}&model=blog`}>
-                        <img
-                          className="h-48 rounded-lg w-full object-cover"
-                          src={post.images[0]?.url || 'https://placehold.co/600x400'}
-                          alt={post.title}
-                        />
-                      </Link>
-                    </div>
-                    <div className="py-4 lg:py-0 lg:w-1/2">
-                      <h3 className="text-lg sm:text-xl mb-4 hover:text-[#ff3750] dark:text-white dark:hover:text-[#ff3750]">
-                        <Link to={`/single-post?id=${post._id}&model=blog`}>{post.title}</Link>
-                      </h3>
-                      <div className="block lg:flex justify-start gap-4 text-xs sm:text-sm text-gray-500 mb-2 dark:text-gray-400">
-                        <span className="me-2 lg:me-0">
-                          <i className="ri-user-fill"></i> {post.author}
-                        </span>
-                        <span className="me-2 lg:me-0">
-                          <i className="ri-calendar-fill"></i> {new Date(post.createdAt).toLocaleDateString()}
-                        </span>
-                        <span>
-                          <i className="ri-chat-1-fill"></i> 0 comments
-                        </span>
+              {!loading &&
+                blogs.map(post => (
+                  <div className="lg:mb-8" key={post._id}>
+                    <div className="block lg:flex gap-4">
+                      <div className="lg:w-1/2">
+                        <Link to={`/single-post?id=${post._id}&model=blog`}>
+                          <img
+                            className="h-48 rounded-lg w-full object-cover"
+                            src={
+                              post.images[0]?.url ||
+                              "https://placehold.co/600x400"
+                            }
+                            alt={post.title}
+                          />
+                        </Link>
                       </div>
-                      <p className="text-gray-400 text-sm sm:text-base mb-2 dark:text-gray-300 line-clamp-3">
-                        {post.content ? (
-                          isHTML(post.content) ? (
-                            <span dangerouslySetInnerHTML={{ __html: post.content }} />
+                      <div className="py-4 lg:py-0 lg:w-1/2">
+                        <h3 className="text-lg sm:text-xl mb-4 hover:text-[#ff3750] dark:text-white dark:hover:text-[#ff3750]">
+                          <Link to={`/single-post?id=${post._id}&model=blog`}>
+                            {post.title}
+                          </Link>
+                        </h3>
+                        <div className="block lg:flex justify-start gap-4 text-xs sm:text-sm text-gray-500 mb-2 dark:text-gray-400">
+                          <span className="me-2 lg:me-0">
+                            <i className="ri-user-fill"></i> {post.author}
+                          </span>
+                          <span className="me-2 lg:me-0">
+                            <i className="ri-calendar-fill"></i>{" "}
+                            {new Date(post.createdAt).toLocaleDateString()}
+                          </span>
+                          <span>
+                            <i className="ri-chat-1-fill"></i> 0 comments
+                          </span>
+                        </div>
+                        <p className="text-gray-400 text-sm sm:text-base mb-2 dark:text-gray-300 line-clamp-3">
+                          {post.content ? (
+                            isHTML(post.content) ? (
+                              <span
+                                dangerouslySetInnerHTML={{
+                                  __html: post.content,
+                                }}
+                              />
+                            ) : (
+                              post.content
+                            )
                           ) : (
-                            post.content
-                          )
-                        ) : (
-                          ""
-                        )}
-                      </p>
-
+                            ""
+                          )}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
 
               {/* Pagination Controls */}
               {!loading && totalPages > 1 && (
@@ -173,7 +184,7 @@ const BlogTag = () => {
                 className="form-input px-4 py-3 rounded-l-lg w-full border dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="search..."
                 value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={e => setSearchQuery(e.target.value)}
                 onKeyDown={handleKeyPress}
               />
               <button
@@ -189,9 +200,9 @@ const BlogTag = () => {
         </div>
       </div>
     </Layout5>
-  );
-};
+  )
+}
 
 export const Head = () => <Seo title="Blog tag" />
 
-export default BlogTag;
+export default BlogTag

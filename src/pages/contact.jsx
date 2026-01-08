@@ -30,12 +30,12 @@ const Contact = () => {
     return () => clearTimeout(timer)
   }, [responseMessage])
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData(prev => ({ ...prev, [name]: value }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault()
     setLoading(true)
     setResponseMessage("")
@@ -67,7 +67,6 @@ const Contact = () => {
 
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
           {/* Contact Form + Info */}
           <div className="col-span-1 md:col-span-2">
             {/* Contact Info */}
@@ -152,7 +151,7 @@ const Contact = () => {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="btn mt-2 bg-black hover:bg-[#ff3750] disabled:opacity-50"
+                    className="btn mt-2 bg-black p-3 rounded-lg text-white hover:bg-[#ff3750] disabled:opacity-50"
                   >
                     {loading ? "Sending..." : "Send"}
                   </button>
@@ -185,7 +184,6 @@ const Contact = () => {
               <MostPopular swiperData={swiperData} />
             </ClientOnly>
           </div>
-
         </div>
       </div>
     </Layout5>
@@ -198,7 +196,10 @@ const ContactCard = ({ icon, title, content }) => (
       <i className={icon}></i>
     </div>
     <h3 className="text-xl font-semibold dark:text-slate-200 mb-1">{title}:</h3>
-    <p className="sm:text-sm md:text-base text-gray-400" dangerouslySetInnerHTML={{ __html: content }} />
+    <p
+      className="sm:text-sm md:text-base text-gray-400"
+      dangerouslySetInnerHTML={{ __html: content }}
+    />
   </div>
 )
 

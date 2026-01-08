@@ -24,7 +24,7 @@ const Footer = () => {
                       Latest Post
                     </h5>
                   </div>
-                  
+
                   <ul className="">
                     <li className="py-1 sm:py-2">
                       <div className="flex items-center">
@@ -195,7 +195,7 @@ const Footer = () => {
                       Browse
                     </h5>
                   </div>
-                  
+
                   <div className="flex justify-between">
                     <div>
                       <h2 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">

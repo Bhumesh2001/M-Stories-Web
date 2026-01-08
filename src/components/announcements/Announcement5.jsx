@@ -33,47 +33,27 @@ const Announcement5 = () => {
               <ul className="flex space-x-2 md:space-x-8 rtl:md:space-x-reverse">
                 {/* social */}
                 <li className="text-md">
-                  <Link
-                    to="#"
-                    target="_blank"
-                    className="hover:text-[#ff3750]"
-                  >
+                  <Link to="#" target="_blank" className="hover:text-[#ff3750]">
                     <i className="ri-facebook-fill"></i>
                   </Link>
                 </li>
                 <li className="text-md">
-                  <Link
-                    to="#"
-                    target="_blank"
-                    className="hover:text-[#ff3750]"
-                  >
+                  <Link to="#" target="_blank" className="hover:text-[#ff3750]">
                     <i className="ri-twitter-x-fill"></i>
                   </Link>
                 </li>
                 <li className="text-md">
-                  <Link
-                    to="#"
-                    target="_blank"
-                    className="hover:text-[#ff3750]"
-                  >
+                  <Link to="#" target="_blank" className="hover:text-[#ff3750]">
                     <i className="ri-linkedin-fill"></i>
                   </Link>
                 </li>
                 <li className="text-md">
-                  <Link
-                    to="#"
-                    target="_blank"
-                    className="hover:text-[#ff3750]"
-                  >
+                  <Link to="#" target="_blank" className="hover:text-[#ff3750]">
                     <i className="ri-rss-fill"></i>
                   </Link>
                 </li>
                 <li className="text-md">
-                  <Link
-                    to="#"
-                    target="_blank"
-                    className="hover:text-[#ff3750]"
-                  >
+                  <Link to="#" target="_blank" className="hover:text-[#ff3750]">
                     <i className="ri-youtube-fill"></i>
                   </Link>
                 </li>

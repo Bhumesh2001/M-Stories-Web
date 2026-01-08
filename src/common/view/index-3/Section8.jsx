@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "gatsby";
-import { callApi } from "../../../services/apiHandler";
-import { HotStorySkeleton_, TopNewsSkeleton_ } from "../../Loader";
+import React, { useEffect, useState } from "react"
+import { Link } from "gatsby"
+import { callApi } from "../../../services/apiHandler"
+import { HotStorySkeleton_, TopNewsSkeleton_ } from "../../Loader"
 
 const Section8 = () => {
-  const [hotStories, setHotStories] = useState([]);
-  const [topNews, setTopNews] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [hotStories, setHotStories] = useState([])
+  const [topNews, setTopNews] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const categoryColors = {
     Technology: "#4ade80",
@@ -15,34 +15,34 @@ const Section8 = () => {
     Travel: "#fbbf24",
     Adventure: "#a78bfa",
     General: "#9ca3af",
-  };
+  }
 
   useEffect(() => {
-    let active = true;
+    let active = true
 
     const loadData = async () => {
       try {
-        const storyRes = await callApi("/story");
-        const newsRes = await callApi("/news");
+        const storyRes = await callApi("/story")
+        const newsRes = await callApi("/news")
 
-        if (!active) return;
+        if (!active) return
 
-        setHotStories(storyRes?.data?.stories?.slice(0, 5) || []);
-        setTopNews(newsRes?.data?.newsList?.slice(0, 5) || []);
+        setHotStories(storyRes?.data?.stories?.slice(0, 5) || [])
+        setTopNews(newsRes?.data?.newsList?.slice(0, 5) || [])
       } catch (err) {
-        console.error("Error fetching data:", err);
+        console.error("Error fetching data:", err)
       } finally {
-        if (active) setLoading(false);
+        if (active) setLoading(false)
       }
-    };
+    }
 
-    loadData();
+    loadData()
     return () => {
-      active = false;
-    };
-  }, []);
+      active = false
+    }
+  }, [])
 
-  const placeholder = "/default.jpg";
+  const placeholder = "/default.jpg"
 
   // Reusable card for both lists
   const renderItem = (item, model) => (
@@ -80,7 +80,7 @@ const Section8 = () => {
         </div>
       </div>
     </li>
-  );
+  )
 
   return (
     <section className="mt-10">
@@ -95,7 +95,7 @@ const Section8 = () => {
             <ul>
               {loading
                 ? [...Array(5)].map((_, i) => <HotStorySkeleton_ key={i} />)
-                : hotStories.map((item) => renderItem(item, "story"))}
+                : hotStories.map(item => renderItem(item, "story"))}
             </ul>
           </div>
 
@@ -108,13 +108,13 @@ const Section8 = () => {
             <ul>
               {loading
                 ? [...Array(5)].map((_, i) => <TopNewsSkeleton_ key={i} />)
-                : topNews.map((item) => renderItem(item, "news"))}
+                : topNews.map(item => renderItem(item, "news"))}
             </ul>
           </div>
         </div>
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Section8;
+export default Section8

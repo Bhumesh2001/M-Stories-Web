@@ -1,0 +1,74 @@
+/* Trending Now Section Swiper Styles */
+.trending-swiper {
+  .swiper-wrapper {
+    transition-timing-function: linear !important;
+    flex-direction: row !important;
+    display: flex !important;
+  }
+  
+  .swiper-slide {
+    transition-timing-function: linear !important;
+    flex-direction: column !important;
+    display: flex !important;
+    min-width: 0 !important;
+  }
+  
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #E32C26;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    
+    &:hover {
+      opacity: 1;
+      color: #E32C26;
+      background: white;
+    }
+  }
+  
+  .swiper-button-next {
+    right: 10px;
+  }
+  
+  .swiper-button-prev {
+    left: 10px;
+  }
+  
+  /* Ensure proper horizontal scrolling */
+  .swiper-slide {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  /* Fix any RTL/LTR direction issues */
+  &[dir="ltr"] {
+    direction: ltr !important;
+  }
+  
+  /* Ensure smooth horizontal transitions */
+  .swiper-slide {
+    transform: translate3d(0, 0, 0) !important;
+    will-change: transform !important;
+  }
+  
+  /* Force horizontal direction */
+  .swiper-horizontal {
+    .swiper-wrapper {
+      flex-direction: row !important;
+    }
+  }
+  
+  /* Ensure proper layout */
+  .swiper-slide {
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+}

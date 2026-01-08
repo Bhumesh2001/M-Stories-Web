@@ -1,24 +1,25 @@
-import React, { useEffect, useRef, useState } from "react";
-import HelmetStructure from "../HelmetStructure";
-import ThemeCustomizer from "../ThemeCustomizer";
-import flogo from "../../assets/images/company_logo.png";
-import logo from "../../assets/images/company_logo.png";
-import { Link } from "gatsby";
+import React, { useEffect, useRef, useState } from "react"
+import HelmetStructure from "../HelmetStructure"
+import ThemeCustomizer from "../ThemeCustomizer"
+import CategoryMenu from "../CategoryMenu"
+import flogo from "../../assets/images/company_logo.png"
+import logo from "../../assets/images/company_logo.png"
+import { Link } from "gatsby"
 
 const Header5 = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef(null)
 
   // Close menu on outside click
   useEffect(() => {
-    const handleClick = (e) => {
+    const handleClick = e => {
       if (menuRef.current && !menuRef.current.contains(e.target)) {
-        setMenuOpen(false);
+        setMenuOpen(false)
       }
-    };
-    document.addEventListener("mousedown", handleClick);
-    return () => document.removeEventListener("mousedown", handleClick);
-  }, []);
+    }
+    document.addEventListener("mousedown", handleClick)
+    return () => document.removeEventListener("mousedown", handleClick)
+  }, [])
 
   return (
     <>
@@ -28,14 +29,9 @@ const Header5 = () => {
       <header className="sticky top-0 z-50 bg-white dark:bg-[#111827] border-b py-3 dark:border-b-slate-800">
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between min-h-[80px]">
-
             {/* LEFT: LOGO */}
             <Link to="/" className="flex items-center gap-3">
-              <img
-                src={logo}
-                alt="logo"
-                className="h-10 dark:hidden"
-              />
+              <img src={logo} alt="logo" className="h-10 dark:hidden" />
               <img
                 src={flogo}
                 alt="logo"
@@ -54,10 +50,9 @@ const Header5 = () => {
 
             {/* RIGHT SIDE: MENU + MOBILE BUTTON */}
             <div className="flex items-center gap-4">
-
               {/* Mobile Menu Button */}
               <button
-                onClick={() => setMenuOpen((p) => !p)}
+                onClick={() => setMenuOpen(p => !p)}
                 className="md:hidden dark:text-white"
                 aria-label="Toggle menu"
               >
@@ -68,7 +63,10 @@ const Header5 = () => {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M4 6h16M4 12h16M4 18h16"
                   />
                 </svg>
@@ -84,14 +82,14 @@ const Header5 = () => {
                   {[
                     { name: "Home", link: "/" },
                     { name: "Blog", link: "/blog-tag" },
-                    { name: "Category", link: "/post-format-standard" },
+                    // { name: "Category", link: "/post-format-standard" },
                     { name: "About", link: "/about" },
                     { name: "Contact", link: "/contact" },
-                  ].map((item) => (
+                  ].map(item => (
                     <li key={item.name}>
                       <Link
                         to={item.link}
-                        className="block px-2 lg:px-4 py-2 hover:text-[#062DB9] dark:hover:text-[#478cff]"
+                        className="block px-2 lg:px-4 py-2 font-semibold hover:text-[#062DB9] dark:hover:text-[#478cff]"
                       >
                         {item.name}
                       </Link>
@@ -99,15 +97,13 @@ const Header5 = () => {
                   ))}
                 </ul>
               </div>
-
             </div>
-
           </nav>
         </div>
+        <CategoryMenu />
       </header>
-
     </>
-  );
-};
+  )
+}
 
-export default Header5;
+export default Header5

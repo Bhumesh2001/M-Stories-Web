@@ -10,7 +10,7 @@ const Section7 = () => {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const isHTML = (text) => /<\/?[a-z][\s\S]*>/i.test(text)
+  const isHTML = text => /<\/?[a-z][\s\S]*>/i.test(text)
 
   useEffect(() => {
     let active = true
@@ -75,8 +75,11 @@ const Section7 = () => {
             </p>
           )}
 
-          {newsItems.map((item) => (
-            <div key={item._id} className="col-span-12 sm:col-span-6 md:col-span-4">
+          {newsItems.map(item => (
+            <div
+              key={item._id}
+              className="col-span-12 sm:col-span-6 md:col-span-4"
+            >
               <img
                 src={
                   item.images?.[0]?.url ||

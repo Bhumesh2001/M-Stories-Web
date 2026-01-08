@@ -61,7 +61,6 @@
 
 // export default PostList
 
-
 import React, { useEffect, useState, useMemo } from "react"
 import { Link } from "gatsby"
 import { callApi } from "../services/apiHandler"
@@ -89,7 +88,9 @@ const PostList = React.memo(function PostList() {
     }
 
     fetchCategories()
-    return () => { mounted = false }   // prevents state updates on unmounted
+    return () => {
+      mounted = false
+    } // prevents state updates on unmounted
   }, [])
 
   // Pre-memoize sliced categories (avoids recalculating)
@@ -107,7 +108,7 @@ const PostList = React.memo(function PostList() {
 
   return (
     <>
-      {memoCats.map((cat) => {
+      {memoCats.map(cat => {
         const imageUrl = cat.images?.[0]?.url || ""
 
         return (

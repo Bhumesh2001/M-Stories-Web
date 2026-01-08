@@ -12,9 +12,9 @@ import img3 from "../assets/images/52.jpg"
 import img4 from "../assets/images/22.jpg"
 import img5 from "../assets/images/4.jpg"
 import img6 from "../assets/images/6.jpg"
-import { callApi } from "../services/apiHandler";
-import { CategorySkeleton_ } from '../common/Loader';
-import ClientOnly from "../components/utils/ClientOnly";
+import { callApi } from "../services/apiHandler"
+import { CategorySkeleton_ } from "../common/Loader"
+import ClientOnly from "../components/utils/ClientOnly"
 
 const swiperData = [
   { id: 1, margin: false, image: img1 },
@@ -23,7 +23,7 @@ const swiperData = [
   { id: 4, margin: false, image: img4 },
   { id: 5, margin: true, image: img5 },
   { id: 6, margin: true, image: img6 },
-];
+]
 
 const PostFormatStandard = () => {
   const [categories, setCategories] = useState([])
@@ -59,7 +59,6 @@ const PostFormatStandard = () => {
 
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-
             {/* Categories - responsive grid */}
             <div className="col-span-2">
               {loading ? (
@@ -71,7 +70,7 @@ const PostFormatStandard = () => {
               ) : (
                 <>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {categories.map((cat) => (
+                    {categories.map(cat => (
                       <Link
                         key={cat._id}
                         to={`/blog-tag?id=${cat._id}&model=category`}
@@ -83,8 +82,8 @@ const PostFormatStandard = () => {
                           alt={cat.name}
                           loading="lazy"
                           decoding="async"
-                          width={1200}   // approximate intrinsic size or real size
-                          height={720}   // approximate intrinsic size
+                          width={1200} // approximate intrinsic size or real size
+                          height={720} // approximate intrinsic size
                           className="w-full h-64 object-cover transform group-hover:scale-105 transition duration-500"
                           style={{ willChange: "transform" }}
                         />
@@ -156,7 +155,7 @@ const PostFormatStandard = () => {
       </Layout5>
     </React.Fragment>
   )
-};
+}
 
 export const Head = () => <Seo title="Categories" />
 

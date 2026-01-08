@@ -1,50 +1,51 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "gatsby";
-import { callApi } from "../../services/apiHandler";
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { PopularChoiceSkeleton } from "../../common/Loader";
+import React, { useEffect, useState } from "react"
+import { Link } from "gatsby"
+import { callApi } from "../../services/apiHandler"
+import AOS from "aos"
+import "aos/dist/aos.css"
+import { PopularChoiceSkeleton } from "../../common/Loader"
 
 const Footer3 = () => {
-  const [blogs, setBlogs] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [blogs, setBlogs] = useState([])
+  const [loading, setLoading] = useState(true)
 
   // Fetch Blogs
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await callApi("/blogs");
-        const list = res?.data?.blogs || [];
-        setBlogs(list.slice(0, 3));
+        const res = await callApi("/blogs")
+        const list = res?.data?.blogs || []
+        setBlogs(list.slice(0, 3))
       } catch (error) {
-        console.error("Error fetching blogs:", error);
+        console.error("Error fetching blogs:", error)
       } finally {
-        setLoading(false);
+        setLoading(false)
       }
-    };
+    }
 
-    fetchBlogs();
-  }, []);
+    fetchBlogs()
+  }, [])
 
   // Init AOS only once
   useEffect(() => {
-    AOS.init({ duration: 600 });
-  }, []);
+    AOS.init({ duration: 600 })
+  }, [])
 
   return (
     <footer className="p-5 mt-10 bg-gray-950" data-aos="fade-up">
       <div className="container px-4 mx-auto">
         <div className="grid grid-cols-12 gap-4 lg:gap-8">
-
           {/* Popular Choice */}
           <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-4">
-            <h5 className="text-2xl font-bold mb-4 text-white">Popular Choice</h5>
+            <h5 className="text-2xl font-bold mb-4 text-white">
+              Popular Choice
+            </h5>
 
             {loading ? (
               <PopularChoiceSkeleton />
             ) : (
               <ul>
-                {blogs.map((blog) => (
+                {blogs.map(blog => (
                   <li key={blog._id} className="py-2">
                     <div className="flex items-center overflow-hidden">
                       <img
@@ -63,7 +64,9 @@ const Footer3 = () => {
 
                         <div className="text-[11px] text-gray-500 uppercase mt-1">
                           <span className="me-2">{blog.author}</span>
-                          <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
+                          <span>
+                            {new Date(blog.createdAt).toLocaleDateString()}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -77,11 +80,15 @@ const Footer3 = () => {
           <div className="col-span-8 sm:col-span-6 md:col-span-6 lg:col-span-2">
             <h5 className="text-2xl font-bold mb-4 text-white">Information</h5>
             <ul className="text-gray-300 capitalize">
-              {["support center", "terms & conditions", "privacy policy"].map((item, idx) => (
-                <li key={idx} className="mb-3">
-                  <Link to="#" className="hover:text-[#E32C26] text-base">{item}</Link>
-                </li>
-              ))}
+              {["support center", "terms & conditions", "privacy policy"].map(
+                (item, idx) => (
+                  <li key={idx} className="mb-3">
+                    <Link to="#" className="hover:text-[#E32C26] text-base">
+                      {item}
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
           </div>
 
@@ -91,7 +98,9 @@ const Footer3 = () => {
             <ul className="text-gray-300 capitalize">
               {["refund policy", "FAQs", "coming soon"].map((item, idx) => (
                 <li key={idx} className="mb-3">
-                  <Link to="#" className="hover:text-[#E32C26] text-base">{item}</Link>
+                  <Link to="#" className="hover:text-[#E32C26] text-base">
+                    {item}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -99,8 +108,10 @@ const Footer3 = () => {
 
           {/* Subscribe */}
           <div className="col-span-12 md:col-span-6 lg:col-span-4 text-center md:text-left">
-            <h5 className="text-2xl font-bold mb-4 text-white">Subscribe Now</h5>
-            <p className="my-4 text-base text-gray-500 md:max-w-60">
+            <h5 className="text-2xl font-bold mb-4 text-white">
+              Subscribe Now
+            </h5>
+            <p className="my-4 text-base text-white md:max-w-60">
               Get the latest creative news from Atlas magazine
             </p>
 
@@ -114,23 +125,25 @@ const Footer3 = () => {
                 />
                 <button
                   type="submit"
-                  className="bg-[#E32C26] text-white text-sm rounded-r-full px-5 py-2.5 flex items-center justify-center hover:bg-[#c12723]"
+                  className="bg-[#E32C26] font-semibold text-white text-sm rounded-r-full px-5 py-2.5 flex items-center justify-center hover:bg-[#c12723]"
                 >
                   Sign Up
                 </button>
               </div>
             </form>
-
           </div>
         </div>
       </div>
 
       {/* Footer Bottom */}
       <div className="container px-4 py-4 mx-auto text-xs text-center text-gray-400">
-        <p>Copyright © {new Date().getFullYear()} Blogs News. All Rights Reserved</p>
+        <p>
+          Copyright © {new Date().getFullYear()} Blogs News. All Rights
+          Reserved
+        </p>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer3;
+export default Footer3

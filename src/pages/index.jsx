@@ -4,14 +4,13 @@ import Seo from "../components/seo"
 import Section6 from "../common/view/index/Section6"
 import Section8 from "../common/view/index/Section8"
 import Layout from "../common/layout/Layout"
-import Section3 from '../common/view/index-3/Section3';
-import Section2 from '../common/view/index-3/Section2';
-import Section4 from '../common/view/index-3/Section4';
-import Section7 from "../common/view/index-3/Section7";
+import Section3 from "../common/view/index-3/Section3"
+import Section2 from "../common/view/index-3/Section2"
+import Section4 from "../common/view/index-3/Section4"
+import Section7 from "../common/view/index-3/Section7"
 import Section8HotStory from "../common/view/index-3/Section8"
 
 const Index = () => {
-
   useEffect(() => {
     Aos.init({ duration: 1000, disable: "mobile", offset: 100, once: true })
 
@@ -21,6 +20,12 @@ const Index = () => {
     }
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/visit", {
+      method: "POST"
+    }).catch(error => console.error("Visit API call failed:", error));
   }, [])
 
   return (
@@ -36,7 +41,7 @@ const Index = () => {
       </Layout>
     </React.Fragment>
   )
-};
+}
 
 export const Head = () => <Seo title="Index" />
 

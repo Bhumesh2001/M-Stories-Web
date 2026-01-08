@@ -51,7 +51,6 @@ const Section6 = ({ categoryName = "Technology" }) => {
     <section className="mt-10" data-aos="zoom-in">
       <div className="container px-4 mx-auto">
         <figure className="relative rounded-2xl overflow-hidden cursor-pointer">
-
           <div
             className="px-4 py-10 sm:px-8 sm:py-16 bg-cover bg-center rounded-2xl transition"
             style={{ backgroundImage: `url(${cover})` }}
@@ -72,10 +71,8 @@ const Section6 = ({ categoryName = "Technology" }) => {
               >
                 See More Info
               </Link>
-
             </figcaption>
           </div>
-
         </figure>
       </div>
     </section>

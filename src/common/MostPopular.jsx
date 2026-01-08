@@ -27,7 +27,7 @@ const MostPopular = () => {
   if (loading) {
     return (
       <div>
-        {[...Array(6)].map((_, i) => (
+        {[...Array(3)].map((_, i) => (
           <MostPopularSkeleton key={i} />
         ))}
       </div>
@@ -38,8 +38,10 @@ const MostPopular = () => {
     <React.Fragment>
       {/* Navigation buttons */}
       <div className="relative top-[-2.25rem] ">
-        <div className="swiper-button-next swiper-button-nexto text-sm rtl:!left-8 rtl:!right-auto"></div>
-        <div className="swiper-button-prev swiper-button-prevo left-auto right-8"></div>
+        <div className="swiper-button-next swiper-button-nexto w-7 h-7 bg-red-600 hover:bg-black text-white text-xs flex items-center justify-center rounded !right-8" style={{ fontSize: '10px' }}>
+        </div>
+        <div className="swiper-button-prev swiper-button-prevo w-7 h-7 bg-red-600 hover:bg-black text-white text-xs flex items-center justify-center rounded left-auto !right-16" style={{ fontSize: '10px' }}>
+        </div>
       </div>
 
       {/* Swiper */}

@@ -5,6 +5,7 @@ import logof from "../../assets/images/f-logo_.jpeg"
 import logo from "../../assets/images/logo_.png"
 import HelmetStructure from "../HelmetStructure"
 import ThemeCustomizer from "../ThemeCustomizer"
+
 const Header2 = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -98,8 +99,9 @@ const Header2 = () => {
                 />
               </svg>
               <div
-                className={`absolute left-0 right-0 z-50 w-full p-3 bg-white shadow md:flex md:items-center md:w-auto md:shadow-none md:p-0 md:bg-transparent dark:bg-slate-800 dark:border-slate-700 ${menuOpen ? "block" : "hidden"
-                  }`}
+                className={`absolute left-0 right-0 z-50 w-full p-3 bg-white shadow md:flex md:items-center md:w-auto md:shadow-none md:p-0 md:bg-transparent dark:bg-slate-800 dark:border-slate-700 ${
+                  menuOpen ? "block" : "hidden"
+                }`}
                 id="menu"
                 ref={menuRef}
               >
@@ -113,8 +115,9 @@ const Header2 = () => {
                       Home <i className="ri-arrow-down-s-line"></i>
                     </Link>
                     <ul
-                      className={`z-50 p-2 bg-white border-0 border-gray-200 rounded-lg dropdown md:p-4 min-w-44 md:absolute dark:bg-slate-800 dark:border-slate-700 md:border ${menuStates.homeMenuOpen ? "block" : "hidden"
-                        }`}
+                      className={`z-50 p-2 bg-white border-0 border-gray-200 rounded-lg dropdown md:p-4 min-w-44 md:absolute dark:bg-slate-800 dark:border-slate-700 md:border ${
+                        menuStates.homeMenuOpen ? "block" : "hidden"
+                      }`}
                     >
                       {" "}
                       <li className="py-1">
@@ -160,8 +163,9 @@ const Header2 = () => {
                       Blog <i className="ri-arrow-down-s-line"></i>
                     </Link>
                     <ul
-                      className={`z-50 p-2 bg-white border-0 border-gray-200 rounded-lg dropdown md:p-4 min-w-44 md:absolute dark:bg-slate-800 dark:border-slate-700 md:border ${menuStates.blogMenuOpen ? "block" : "hidden"
-                        }`}
+                      className={`z-50 p-2 bg-white border-0 border-gray-200 rounded-lg dropdown md:p-4 min-w-44 md:absolute dark:bg-slate-800 dark:border-slate-700 md:border ${
+                        menuStates.blogMenuOpen ? "block" : "hidden"
+                      }`}
                     >
                       <li className="py-1">
                         <Link
@@ -222,8 +226,9 @@ const Header2 = () => {
                       Post Format <i className="ri-arrow-down-s-line"></i>
                     </Link>
                     <ul
-                      className={`rounded-lg dropdown p-4 min-w-44 absolute z-50 bg-white dark:bg-slate-800 dark:border-slate-700 border border-gray-200 ${menuStates.postFormatMenuOpen ? "block" : "hidden"
-                        }`}
+                      className={`rounded-lg dropdown p-4 min-w-44 absolute z-50 bg-white dark:bg-slate-800 dark:border-slate-700 border border-gray-200 ${
+                        menuStates.postFormatMenuOpen ? "block" : "hidden"
+                      }`}
                     >
                       <li className="py-1">
                         <Link
@@ -445,8 +450,9 @@ const Header2 = () => {
                       All Pages <i className="ri-arrow-down-s-line"></i>
                     </Link>
                     <div
-                      className={`absolute left-0 right-0 z-50 ${menuStates.allPagesMenuOpen ? "block" : "hidden"
-                        }`}
+                      className={`absolute left-0 right-0 z-50 ${
+                        menuStates.allPagesMenuOpen ? "block" : "hidden"
+                      }`}
                     >
                       <div
                         id="mega-menu-full-dropdown"

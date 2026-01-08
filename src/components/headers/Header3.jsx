@@ -5,6 +5,7 @@ import ThemeCustomizer from "../ThemeCustomizer"
 import Announcement3 from "../announcements/Announcement3"
 import logof from "../../assets/images/f-logo_.jpeg"
 import logo from "../../assets/images/logo_.png"
+
 const Header3 = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
@@ -97,8 +98,9 @@ const Header3 = () => {
                 />
               </svg>
               <div
-                className={` ${menuOpen ? "block" : "hidden"
-                  } w-full md:flex md:items-center md:w-auto absolute bg-white left-0 right-0 p-3 z-50 shadow md:shadow-none md:p-0 md:bg-transparent dark:bg-slate-800 dark:border-slate-700`}
+                className={` ${
+                  menuOpen ? "block" : "hidden"
+                } w-full md:flex md:items-center md:w-auto absolute bg-white left-0 right-0 p-3 z-50 shadow md:shadow-none md:p-0 md:bg-transparent dark:bg-slate-800 dark:border-slate-700`}
                 id="menu"
               >
                 <ul className="pt-4 text-base text-gray-700 md:flex md:justify-between md:pt-0 dark:text-slate-200 flex-wrap">
@@ -112,8 +114,9 @@ const Header3 = () => {
                       <i className="ri-arrow-down-s-line float-right rtl:float-left md:float-none"></i>
                     </Link>
                     <ul
-                      className={`rounded-lg dropdown p-2 md:p-4 min-w-44 md:absolute z-50 bg-white dark:bg-slate-800 dark:border-slate-700 border-0 md:border border-gray-200 ${menuStates.homeMenuOpen ? "block" : "hidden"
-                        }`}
+                      className={`rounded-lg dropdown p-2 md:p-4 min-w-44 md:absolute z-50 bg-white dark:bg-slate-800 dark:border-slate-700 border-0 md:border border-gray-200 ${
+                        menuStates.homeMenuOpen ? "block" : "hidden"
+                      }`}
                     >
                       <li className="py-1">
                         <Link
@@ -159,8 +162,9 @@ const Header3 = () => {
                       <i className="ri-arrow-down-s-line float-right rtl:float-left md:float-none"></i>
                     </Link>
                     <ul
-                      className={`rounded-lg dropdown p-2 md:p-4 min-w-44 md:absolute z-50 bg-white dark:bg-slate-800 dark:border-slate-700 border-0 md:border border-gray-200 ${menuStates.blogMenuOpen ? "block" : "hidden"
-                        }`}
+                      className={`rounded-lg dropdown p-2 md:p-4 min-w-44 md:absolute z-50 bg-white dark:bg-slate-800 dark:border-slate-700 border-0 md:border border-gray-200 ${
+                        menuStates.blogMenuOpen ? "block" : "hidden"
+                      }`}
                     >
                       <li className="py-1">
                         <Link
@@ -222,8 +226,9 @@ const Header3 = () => {
                       <i className="ri-arrow-down-s-line float-right rtl:float-left md:float-none"></i>
                     </Link>
                     <ul
-                      className={`rounded-lg dropdown p-2 md:p-4 min-w-44 md:absolute z-50 bg-white dark:bg-slate-800 dark:border-slate-700 border-0 md:border border-gray-200 ${menuStates.postFormatMenuOpen ? "block" : "hidden"
-                        }`}
+                      className={`rounded-lg dropdown p-2 md:p-4 min-w-44 md:absolute z-50 bg-white dark:bg-slate-800 dark:border-slate-700 border-0 md:border border-gray-200 ${
+                        menuStates.postFormatMenuOpen ? "block" : "hidden"
+                      }`}
                     >
                       <li className="py-1">
                         <Link
@@ -447,8 +452,9 @@ const Header3 = () => {
                       <i className="ri-arrow-down-s-line float-right rtl:float-left md:float-none"></i>
                     </Link>
                     <div
-                      className={`absolute left-0 right-0 z-50 ${menuStates.allPagesMenuOpen ? "block" : "hidden"
-                        }`}
+                      className={`absolute left-0 right-0 z-50 ${
+                        menuStates.allPagesMenuOpen ? "block" : "hidden"
+                      }`}
                     >
                       <div
                         id="mega-menu-full-dropdown"

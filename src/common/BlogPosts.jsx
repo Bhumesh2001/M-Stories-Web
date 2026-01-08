@@ -20,9 +20,7 @@ const BlogPosts = ({ postData }) => {
                 </div>
                 <div className="py-4 lg:py-0 lg:w-1/2">
                   <h3 className="text-lg sm:text-xl mb-4 hover:text-[#ff3750] dark:text-white dark:hover:text-[#ff3750]">
-                    <Link to="/single-post">
-                      {item.title}
-                    </Link>
+                    <Link to="/single-post">{item.title}</Link>
                   </h3>
                   <div className="justify-start block gap-4 mb-2 text-xs text-gray-500 lg:flex sm:text-sm dark:text-gray-400">
                     <span className="me-2 lg:me-0">

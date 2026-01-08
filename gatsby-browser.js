@@ -7,7 +7,7 @@
 // You can delete this file if you're not using it
 
 import React from "react"
-import "./src/assets/scss/tailwind.scss"
+import "./src/assets/scss/tailwind.css"
 import { ThemeProvider } from "./src/context/ThemeContext"
 
 export const wrapRootElement = ({ element }) => (
