@@ -14,6 +14,8 @@ const BlogTag = () => {
   const [searchQuery, setSearchQuery] = useState("")
   const [allBlogs, setAllBlogs] = useState([])
 
+  const [categoryName, setCategoryName] = useState("")
+
   // pagination state
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
@@ -33,30 +35,72 @@ const BlogTag = () => {
   }, [])
 
   useEffect(() => {
-    // Fetch blogs with pagination
-    const fetchBlogs = async (pageNumber = 1) => {
+    // Fetch blogs, news, and articles with pagination
+    const fetchContent = async (pageNumber = 1) => {
       setLoading(true)
       try {
-        let url
-
+        let response
         if (id) {
-          url = `/blogs/category/${id}?page=${pageNumber}&limit=10`
+          // Category case: getBlogsByCategory
+          response = await callApi(
+            `/blogs/category/${id}?page=${pageNumber}&limit=10`,
+          )
+          const apiData = response.data
+
+          const blogsData = apiData.blogs?.data || []
+          const newsData = apiData.news?.data || []
+          const articlesData = apiData.articles?.data || []
+
+          const allData = [
+            ...blogsData.map(b => ({ ...b, type: "blog" })),
+            ...newsData.map(n => ({ ...n, type: "news" })),
+            ...articlesData.map(a => ({ ...a, type: "story" })),
+          ].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+
+          setAllBlogs(allData)
+          setBlogs(allData)
+          const total =
+            (apiData.blogs?.pagination?.total || 0) +
+            (apiData.news?.pagination?.total || 0) +
+            (apiData.articles?.pagination?.total || 0)
+          setTotalPages(Math.ceil(total / 10))
+          setPage(apiData.blogs?.pagination?.page || pageNumber)
         } else {
-          url = `/blogs?page=${pageNumber}&limit=10`
+          // All blogs case: getAllBlogs
+          response = await callApi(`/blogs?page=${pageNumber}&limit=10`)
+          const apiData = response.data
+          const blogsData = apiData.blogs || []
+          const newsData = []
+          const articlesData = []
+
+          const allData = blogsData.map(b => ({ ...b, type: "blog" }))
+
+          setAllBlogs(allData)
+          setBlogs(allData)
+          setTotalPages(apiData.pagination?.totalPages || 1)
+          setPage(apiData.pagination?.page || pageNumber)
         }
-        const data = await callApi(url)
-        setAllBlogs(data.data.blogs || [])
-        setBlogs(data.data.blogs || [])
-        setTotalPages(data.data.pagination.totalPages)
-        setPage(data.data.pagination.page)
       } catch (err) {
         console.error("API call failed:", err)
       } finally {
         setLoading(false)
       }
     }
-    fetchBlogs(page)
+    fetchContent(page)
   }, [page, id])
+
+  useEffect(() => {
+    const fetchCategory = async () => {
+      if (!id) return
+      try {
+        const data = await callApi(`/categories/${id}`)
+        setCategoryName(data.data.name)
+      } catch (err) {
+        console.error("Category fetch failed:", err)
+      }
+    }
+    fetchCategory()
+  }, [id])
 
   // Handle search logic
   const handleSearch = () => {
@@ -84,7 +128,7 @@ const BlogTag = () => {
 
   return (
     <Layout5>
-      <BreadCrumb title="TAG ARCHIVES : PORROS" titleType="blog" />
+      <BreadCrumb title={`Content : ${categoryName}`} titleType="blog" />
 
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xs:gap-0 sm:gap-8">
@@ -94,7 +138,7 @@ const BlogTag = () => {
               {loading && <BlogListSkeleton />}
 
               {!loading && blogs.length === 0 && (
-                <p className="text-center text-gray-500">No blogs found.</p>
+                <p className="text-center text-gray-500">No content found.</p>
               )}
 
               {!loading &&
@@ -102,7 +146,9 @@ const BlogTag = () => {
                   <div className="lg:mb-8" key={post._id}>
                     <div className="block lg:flex gap-4">
                       <div className="lg:w-1/2">
-                        <Link to={`/single-post?id=${post._id}&model=blog`}>
+                        <Link
+                          to={`/single-post?id=${post._id}&model=${post.type}`}
+                        >
                           <img
                             className="h-48 rounded-lg w-full object-cover"
                             src={
@@ -115,7 +161,9 @@ const BlogTag = () => {
                       </div>
                       <div className="py-4 lg:py-0 lg:w-1/2">
                         <h3 className="text-lg sm:text-xl mb-4 hover:text-[#ff3750] dark:text-white dark:hover:text-[#ff3750]">
-                          <Link to={`/single-post?id=${post._id}&model=blog`}>
+                          <Link
+                            to={`/single-post?id=${post._id}&model=${post.type}`}
+                          >
                             {post.title}
                           </Link>
                         </h3>

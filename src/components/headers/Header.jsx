@@ -34,7 +34,7 @@ const Header = () => {
       <HelmetStructure bodyClass="dark:bg-gray-900 text-base font-body bg-[#F5F5F5] header-2" />
       <ThemeCustomizer />
 
-      <header className="sticky top-0 z-50 bg-white shadow md:mt-8 md:shadow-none md:bg-transparent dark:bg-slate-800 dark:md:bg-transparent">
+      <header className="sticky top-0 z-50 bg-white shadow md:mt-5 md:shadow-none md:bg-transparent dark:bg-slate-800 dark:md:bg-transparent">
         <div className="container px-4 mx-auto">
           <nav className="flex items-center justify-between min-h-[100px] bg-white rounded-2xl px-0 md:px-6 py-3 md:py-2 shadow-none md:shadow dark:bg-slate-800">
             {/* LEFT: LOGO (always left) */}

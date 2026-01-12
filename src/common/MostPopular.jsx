@@ -36,6 +36,22 @@ const MostPopular = () => {
 
   return (
     <React.Fragment>
+      <style>
+        {`
+          .swiper-button-next.swiper-button-nexto::after {
+            content: '▶';
+            font-family: Arial, sans-serif !important;
+            font-size: 10px !important;
+            color: white;
+          }
+          .swiper-button-prev.swiper-button-prevo::after {
+            content: '◀';
+            font-family: Arial, sans-serif !important;
+            font-size: 10px !important;
+            color: white;
+          }
+        `}
+      </style>
       {/* Navigation buttons */}
       <div className="relative top-[-2.25rem] ">
         <div className="swiper-button-next swiper-button-nexto w-7 h-7 bg-red-600 hover:bg-black text-white text-xs flex items-center justify-center rounded !right-8" style={{ fontSize: '10px' }}>

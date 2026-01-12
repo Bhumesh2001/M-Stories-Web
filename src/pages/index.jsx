@@ -9,6 +9,7 @@ import Section2 from "../common/view/index-3/Section2"
 import Section4 from "../common/view/index-3/Section4"
 import Section7 from "../common/view/index-3/Section7"
 import Section8HotStory from "../common/view/index-3/Section8"
+import baseUrl from "../services/baseUrl"
 
 const Index = () => {
   useEffect(() => {
@@ -23,9 +24,9 @@ const Index = () => {
   }, [])
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/visit", {
-      method: "POST"
-    }).catch(error => console.error("Visit API call failed:", error));
+    fetch(`${baseUrl}/api/visit`, {
+      method: "POST",
+    }).catch(error => console.error("Visit API call failed:", error))
   }, [])
 
   return (

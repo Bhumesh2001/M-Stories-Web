@@ -92,7 +92,7 @@ const Contact = () => {
             <div className="mt-8 rounded overflow-hidden">
               <iframe
                 title="location-map"
-                src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d459938.4211270264!2d-80.1917902!3d25.7616798!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1711972983844!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3504.595469936896!2d77.284815!3d28.5518765!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce41a919c3be3%3A0xa06554fe72ffce96!2sShaheen%20Bagh%2C%20Block%20A%2C%20Jamia%20Nagar%2C%20Okhla%2C%20New%20Delhi%2C%20Delhi%20110025!5e0!3m2!1sen!2sin!4v1768053362499!5m2!1sen!2sin"
                 width="100%"
                 height="450"
                 className="border-0 rounded-lg"
